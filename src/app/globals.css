@@ -11,19 +11,37 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
+    --background-rgb: 31, 31, 31;
     --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-end-rgb: 22, 22, 22;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: rgb(var(--background-rgb));
+}
+
+.nav {
+  color: rgb(var(---foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+.sidenav__item {
+  color: rgb(var(---foreground-rgb));
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+
+.bg-image-register {
+  background-image: url('../../public/letters.jpg');
+}
+
+.primary {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
 }
 
 @layer utilities {

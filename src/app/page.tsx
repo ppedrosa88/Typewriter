@@ -1,113 +1,129 @@
+"use client";
+
+import Link from "next/link";
+import Typewriter from "../../public/typewriter1.png";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <main>
+      <section className="relative w-full h-screen bg-image-register bg-contain flex justify-center items-center">
+        <div className="absolute container w-[calc(100vw-3vw)] h-[calc(100vh-20vh)] p-6 rounded-2xl skew-y-3 bg-[#151515] shadow-2xl m-6"></div>
+        <div className="absolute z-1 w-full h-[calc(100vh-64px)] p-6 flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 p-12">
+            <div className="w-full md:px-12">
+              <h1 className="flex text-[48px] md:text-[60px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-[20ch] leading-[60px] mb-12">
+                TypeWriter
+              </h1>
+              <div className="mb-0 md:mb-24">
+                <p className="text-gray-50 text-[32px] mb-8 leading-[52px]">
+                  Create, manage and{" "}
+                  <span className="bg-[#D98471] text-black px-2 font-extrabold rounded-md">
+                    post.
+                  </span>
+                </p>
+                <p className="text-gray-50 text-[32px] mb-4 leading-[52px]">
+                  All the{" "}
+                  <span className="bg-[#D98471] text-black px-2 font-extrabold rounded-md">
+                    POWER
+                  </span>{" "}
+                  of AI
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-evenly">
+              <Link
+                href={"/login"}
+                className="inline-block w-2/5 md:w-1/3 h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+              >
+                Sign In
+              </Link>
+              <Link
+                href={"/register"}
+                className="w-2/5 md:w-1/3 h-10 inline-block px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-105 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-[#151515] via-[#313131] to-black hover:border-black "
+              >
+                Sign Up
+              </Link>
+            </div>
+          </div>
+          <div className="relative w-1/2 h-full overflow-hidden hidden md:block">
+            <div className="absolute w-full h-full bg-[radial-gradient(circle_closest-side,#D9847135,RGB(31,31,31,0))]"></div>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src={Typewriter}
+              alt="Typewriter"
+              className="h-full object-cover grayscale invert	drop-shadow-2xl shadow-black"
             />
-          </a>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section className="mt-0 transition-all duration-200 ease-soft-in-out ps">
+        <div className="min-h-screen md:min-h-96 mb-32">
+          <div className="container">
+            <div className="flex flex-wrap -mb-48 md:-mb-56 lg:-mb-48 mt-48">
+              <div className="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-full xl:w-full">
+                <div className="relative z-10 flex justify-evenly gap-6 flex-wrap min-w-0 break-words bg-transparent border-0 shadow-soft-xl rounded-2xl ">
+                  <div className="p-6 text-center bg-gray-50 border-b-0 rounded-2xl aspect-square w-3/12 shadow-xl">
+                    <h5 className="text-slate-400">Caja</h5>
+                  </div>
+                  <div className="p-6 text-center bg-gray-50 border-b-0 rounded-2xl aspect-square w-3/12 scale-110 shadow-2xl shadow-gray-500">
+                    <h5 className="text-slate-400">Caja</h5>
+                  </div>
+                  <div className="p-6 text-center bg-gray-50 border-b-0 rounded-2xl aspect-square w-3/12 shadow-xl">
+                    <h5 className="text-slate-400">Caja</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative z-0 flex items-start pb-56 pt-12 m-4 overflow-hidden bg-center bg-cover min-h-96 rounded-xl bg-image-register">
+            <span className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-30"></span>
+          </div>
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <section className="transition-all duration-200 ease-soft-in-out p-6 w-full">
+        <div className="primary container relative h-72 rounded-2xl overflow-hidden bg-gradient-to-tl from-orange-400 to-slate-300 shadow-2xl shadow-black">
+          <svg
+            className="w-4/6 absolute z-10 left-0 top-0"
+            preserveAspectRatio="none"
+            viewBox="0 0 100 100"
+            fill="currentColor"
+          >
+            <polygon
+              points="0,0 100,0 0,100"
+              className="fill-current text-[#1F1F1F]"
+            ></polygon>
+          </svg>
+          <div className="absolute w-full h-full flex justify-around items-center bg-gradient-to-tl from-orange-400 to-slate-300">
+            <div className="w-3/5 z-10 h-full flex justify-center">
+              <h5 className="flex items-center h-full text-[60px] text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-slate-300 font-bold w-[20ch] leading-[60px]">
+                Let&apos;s make something great together.
+              </h5>
+            </div>
+            <div className="w-2/5 z-10 flex justify-center text-white text-lg">
+              <a
+                className="w-2/3 px-6 py-3 mt-6 mb-0 font-bold text-center primary uppercase align-middle transition-all bg-transparent border-2 border-black  rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in bg-gradient-to-tl from-black to-slate-950 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+                href="/contact"
+              >
+                Let&apos;s connect
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <footer className="py-12">
+        <div className="container">
+          <div className="flex flex-wrap ">
+            <div className="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
+              <p className="mb-0 text-slate-400">
+                Copyright © 2024 Soft by Pablo Pedrosa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

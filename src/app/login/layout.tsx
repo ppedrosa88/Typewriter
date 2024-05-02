@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="dark:bg-[#151515] m-0 p-0 font-sans antialiased font-normal text-start text-base leading-default text-white">
+      <body className="m-0 font-sans antialiased font-normal text-start text-base leading-default text-slate-500">
         {children}
       </body>
     </html>
