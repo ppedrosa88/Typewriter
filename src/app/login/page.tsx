@@ -7,7 +7,7 @@ import Link from "next/link";
 import { User } from "../lib/models/User";
 import { loginUser } from "../lib/auth/fetch";
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -60,8 +60,16 @@ export default function page() {
             <div className="flex flex-wrap mt-0 -mx-3">
               <div className="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 lg:w-5/12 xl:w-4/12">
                 <div className="relative flex flex-col min-w-0 mt-32 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border">
+                  <div className="absolute -top-16 w-full flex justify-center items-center">
+                    <Link
+                      href={"/"}
+                      className="text-[48px] md:text-[60px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold leading-[60px]"
+                    >
+                      TypeWriter
+                    </Link>
+                  </div>
                   <div className="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
-                    <h3 className="relative z-10 font-bold text-transparent bg-gradient-to-tl from-orange-400 to-slate-300 bg-clip-text">
+                    <h3 className="relative z-10 font-bold text-2xl text-transparent bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 bg-clip-text">
                       Welcome back
                     </h3>
                     <p className="mb-0">
@@ -69,7 +77,7 @@ export default function page() {
                     </p>
                   </div>
                   <div className="flex-auto p-6">
-                    <form role="form" onSubmit={handleSubmit}>
+                    <form method="POST" onSubmit={handleSubmit}>
                       <label className="mb-2 ml-1 font-bold text-xs text-slate-50">
                         Email
                       </label>
@@ -120,7 +128,7 @@ export default function page() {
                       <div className="text-center">
                         <button
                           type="submit"
-                          className="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-orange-400 to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+                          className="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
                           disabled={loading}
                         >
                           Sign in
@@ -133,7 +141,7 @@ export default function page() {
                       Don&apos;t have an account?&nbsp;
                       <Link
                         href="/register"
-                        className="relative z-10 font-semibold text-transparent bg-gradient-to-tl from-orange-400 to-slate-300 bg-clip-text"
+                        className="relative z-10 font-semibold text-transparent bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 bg-clip-text"
                       >
                         Sign up
                       </Link>

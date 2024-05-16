@@ -7,7 +7,7 @@ import { createUser } from "../lib/auth/fetch";
 import { User } from "../lib/models/User";
 import { userSchemaRegister } from "../lib/auth/userSchemaRegister";
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const [pathError, setPathError] = useState("");
@@ -53,13 +53,6 @@ export default function page() {
     } catch ({ message }) {
       setErrorMessage(message);
     }
-    // try {
-    //   if (!errorMessage) {
-    //   }
-    // } catch (error) {
-    //   setLoading(false);
-    //   setErrorMessage("Something went wrong");
-    // }
   }
 
   const handleOnChange = () => {
@@ -73,19 +66,18 @@ export default function page() {
     <main className="mt-0 transition-all duration-200 ease-soft-in-out ps">
       <section className="min-h-screen mb-32">
         <div className="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl bg-image-register">
-          <span className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-60"></span>
           <div className="container z-10">
             <div className="flex flex-wrap justify-center -mx-3">
               <div className="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
                 <h1 className="mt-12 mb-2 text-slate-50 text-3xl">
                   Welcome to{" "}
-                  <span className="relative z-10 font-semibold text-transparent bg-gradient-to-tl from-orange-400 to-slate-300 bg-clip-text text-4xl">
-                    TYPEWRITER!
+                  <span className="relative z-10 font-semibold text-transparent bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 bg-clip-text text-[40px] before:content-[''] before:absolute before:-z-10 before:bg-white before:rounded-2xl px-4 before:top-0 before:right-0 before:bottom-0 before:left-0">
+                    <Link href={"/"}>TYPEWRITER!</Link>
                   </span>
                 </h1>
-                <p className="text-xl text-slate-50">
+                {/* <p className="text-xl text-slate-50">
                   Start creating and modifying content
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -198,7 +190,7 @@ export default function page() {
                       Already have an account?{" "}
                       <Link
                         href="/login"
-                        className="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-orange-400 to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85"
+                        className="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85"
                       >
                         Sign in
                       </Link>

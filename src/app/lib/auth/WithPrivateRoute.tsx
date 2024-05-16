@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { isPast } from "date-fns";
 
-const WithPrivateRoute = ({ children }) => {
+export default function WithPrivateRoute({ children }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -22,6 +22,4 @@ const WithPrivateRoute = ({ children }) => {
   }, []);
 
   return <>{children}</>;
-};
-
-export default WithPrivateRoute;
+}

@@ -44,6 +44,15 @@ body {
   background: rgb(var(--background-rgb));
 }
 
+.active {
+  @apply text-[#70FFD9] font-bold border-b-4 border-[#70FFD9];
+}
+
+.active__sidebar {
+  @apply text-[#70FFD9] bg-[#1F1F1F] font-bold border-b-4 border-[#70FFD9];
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
