@@ -81,7 +81,7 @@ export default function Page() {
           <div className="w-full font-mono flex flex-col text-white rounded-md overflow-hidden mt-12 bg-[#313131]">
             <div className="w-full flex justify-evenly p-2 border-b border-gray-200">
               <div className=" w-2/6">
-                <p>Nombre</p>
+                <p>Título</p>
               </div>
               <div className="w-4/6 flex justify-between">
                 <div className="w-1/4">
@@ -91,7 +91,7 @@ export default function Page() {
                   <p>Publicación</p>
                 </div>
                 <div className="w-1/4">
-                  <p>Creación</p>
+                  <p>Creado</p>
                 </div>
                 <div className="w-[12%]"></div>
               </div>
@@ -101,14 +101,14 @@ export default function Page() {
                 return (
                   <div
                     key={schedule.id}
-                    className="relative w-full flex justify-evenly p-2 border-b border-gray-200"
+                    className="group relative w-full flex justify-evenly p-2 border-b border-gray-200"
                   >
-                    <div className="w-2/6">
-                      <p>
+                    <div className="w-2/6 z-10">
+                      <p className="truncate pr-4">
                         {schedule.iaTitle ? schedule.iaTitle : schedule.title}
                       </p>
                     </div>
-                    <div className="w-4/6 flex justify-between items-center">
+                    <div className="w-4/6 flex justify-between items-center z-10">
                       <div className="w-1/4">
                         <p className="capitalize">{schedule.category}</p>
                       </div>
@@ -125,6 +125,7 @@ export default function Page() {
                         <Remove handleRemove={handleRemove} id={schedule.id} />
                       </div>
                     </div>
+                    <div className="absolute top-0 right-0 bottom-0 left-0 group-hover:bg-[#D98471]"></div>
                   </div>
                 );
               })}

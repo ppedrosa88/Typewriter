@@ -200,81 +200,8 @@ export default function Page() {
       {/* O bien */}
       {/* Automatiza la creación a partir de una URL base */}
 
-      {/* <section className="w-full p-8 mt-40">
-        <h2 className="underline decoration-[#70FFD9] underline-offset-8 text-center text-[60px] font-bold text-gray-50 leading-loose">
-          Descubre cómo funciona
-        </h2>
-        <div className="w-full flex justify-evenly items-center mt-8">
-          <div className="w-1/5  flex flex-col justify-center items-center bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black">
-            <p className="mb-4 text-2xl font-bold text-center">
-              Introduce tu URL
-            </p>
-            <div>
-              <div className="w-full flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="stroke-[#70FFD9] w-20 h-20 mb-4 self-center"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M15 12h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1 -1.414 0l-6.586 -6.586a1 1 0 0 1 .707 -1.707h3.586v-3h6v3z" />
-                  <path d="M15 3h-6" />
-                  <path d="M15 6h-6" />
-                </svg>
-              </div>
-              <p className="mb-4 text-2xl font-bold text-center">
-                Escoge tu plataforma
-              </p>
-              <div className="w-full flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="stroke-[#70FFD9] w-20 h-20 mb-4 self-center"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M15 12h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1 -1.414 0l-6.586 -6.586a1 1 0 0 1 .707 -1.707h3.586v-3h6v3z" />
-                  <path d="M15 3h-6" />
-                  <path d="M15 6h-6" />
-                </svg>
-              </div>
-              <p className="mb-4 text-2xl font-bold text-center">
-                Crea tu contenido
-              </p>
-            </div>
-          </div>
-          <div className=" flex flex-col justify-center items-center">
-            <p className="text-2xl font-bold text-center bg-[#D98471] px-4 py-2 rounded-xl">
-              O bien
-            </p>
-          </div>
-          <div className=" flex flex-col justify-center items-center bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black">
-            <p className="mb-4 text-2xl font-bold text-center text-nowrap">
-              Automatiza la creación
-            </p>
-            <p className="mb-4 text-2xl font-bold text-center text-nowrap">
-              {" "}
-              a partir de una URL base
-            </p>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="relative w-full flex justify-evenly items-stretch mt-56">
-        <div className="absolute top-0 hidden w-2/5 h-full mr-40 overflow-hidden -skew-x-12 right-0 rounded-bl-xl md:block">
+      <section className="relative w-full flex justify-evenly items-stretch mt-56 overflow-hidden">
+        <div className="absolute top-0 hidden w-1/2 h-full -mr-40 overflow-hidden -skew-x-12 right-0 rounded-bl-xl md:block">
           <div className="absolute inset-x-0 top-0 right-20 z-0 h-full -ml-16 bg-[length:80%_auto] bg-center skew-x-12 bg-image-register"></div>
         </div>
         <div className="w-2/5 py-12">
@@ -319,34 +246,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* <section className="mt-0 transition-all duration-200 ease-soft-in-out ps">
-        <div className="min-h-screen md:min-h-96 mb-32">
-          <div className="container">
-            <div className="flex flex-wrap -mb-48 md:-mb-56 lg:-mb-48 mt-48">
-              <div className="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-full xl:w-full">
-                <div className="relative z-10 flex justify-evenly gap-6 flex-wrap min-w-0 break-words bg-transparent border-0 shadow-soft-xl rounded-2xl ">
-                  <div className="p-6 text-center bg-[#151515] border-b-0 rounded-2xl aspect-square w-3/12 shadow-xl shadow-gray-600">
-                    <h5 className="text-gray-50">Dev</h5>
-                  </div>
-                  <div className="p-6 text-center bg-[#151515] border-b-0 rounded-2xl aspect-square w-3/12 scale-110 shadow-2xl shadow-gray-00">
-                    <h5 className="text-gray-50">Content editors</h5>
-                  </div>
-                  <div className="p-6 text-center bg-[#151515] border-b-0 rounded-2xl aspect-square w-3/12 shadow-xl shadow-gray-600">
-                    <h5 className="text-gray-50">Marketing</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="relative z-0 flex items-start pb-56 pt-12 m-4 overflow-hidden bg-center bg-cover min-h-96 rounded-xl bg-image-register">
-            <span className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-30"></span>
-          </div>
-        </div>
-      </section> */}
-
       {/* faq's */}
 
-      {/* <section className="transition-all duration-200 ease-soft-in-out p-6 w-full">
+      <section className="transition-all duration-200 ease-soft-in-out p-6 w-full">
         <div className="primary container relative h-72 rounded-2xl overflow-hidden bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 shadow-2xl shadow-black">
           <svg
             className="w-4/6 absolute z-10 left-0 top-0"
@@ -375,7 +277,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* ¿Qué puedo hacer? */}
       {/* Título: Explora los beneficios de TypeWriter */}

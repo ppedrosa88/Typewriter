@@ -90,7 +90,7 @@ export default function Page() {
           <h3 className="text-[#D98471] font-bold text-2xl mb-2">Url base:</h3>
           <div className="py-6 px-12">
             <div className="bg-[#313131] w-full py-4 px-10 rounded-lg flex justify-between items-center">
-              <code className="text-white ">http://localhost:3000/api</code>
+              <code className="text-white ">http://localhost:3006/api</code>
               <button className="bg-slate-50 text-black px-4 py-2 rounded-md font-bold">
                 Copy
               </button>
@@ -380,7 +380,7 @@ export default function Page() {
               <div className="bg-[#313131] w-full py-4 px-10 rounded-lg flex justify-between items-center">
                 <code className="text-white ">
                   <span className="text-[#70FFD9]">curl</span> -X GET
-                  /&#123;token&#125;/blogs;
+                  http://localhost:3006/api/&#123;token&#125;/blogs;
                 </code>
                 <button className="bg-slate-50 text-black px-4 py-2 rounded-md font-bold">
                   Copy
@@ -393,7 +393,7 @@ export default function Page() {
               <div className="bg-[#313131] w-full py-4 px-10 rounded-lg flex justify-between items-center">
                 <code className="text-white ">
                   <span className="text-[#70FFD9]">curl</span> -X GET
-                  /&#123;token&#125;/trash/&#123;id&#125;
+                  http://localhost:3006/api/&#123;token&#125;/trash/&#123;id&#125;
                 </code>
                 <button className="bg-slate-50 text-black px-4 py-2 rounded-md font-bold">
                   Copy
@@ -408,7 +408,7 @@ export default function Page() {
               <div className="bg-[#313131] w-full py-4 px-10 rounded-lg flex justify-between items-center">
                 <code className="text-white ">
                   <span className="text-[#70FFD9]">curl</span> -X PATCH
-                  /&#123;token&#125;/trash/&#123;id&#125;
+                  http://localhost:3006/api/&#123;token&#125;/trash/&#123;id&#125;
                 </code>
                 <button className="bg-slate-50 text-black px-4 py-2 rounded-md font-bold">
                   Copy
@@ -423,7 +423,7 @@ export default function Page() {
               <div className="bg-[#313131] w-full py-4 px-10 rounded-lg flex justify-between items-center">
                 <code className="text-white ">
                   <span className="text-[#70FFD9]">curl</span> -X DELETE
-                  /&#123;token&#125;/trash/&#123;id&#125;
+                  http://localhost:3006/api/&#123;token&#125;/trash/&#123;id&#125;
                 </code>
                 <button className="bg-slate-50 text-black px-4 py-2 rounded-md font-bold">
                   Copy

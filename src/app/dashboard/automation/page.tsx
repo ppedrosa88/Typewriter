@@ -108,7 +108,7 @@ export default function Page() {
             <input
               onChange={search}
               type="text"
-              placeholder="Type to search by url"
+              placeholder="Busca por referencia"
               className="p-2 w-full h-full outline-none bg-gray-50"
             />
           </form>
@@ -117,20 +117,20 @@ export default function Page() {
           <div className="w-full font-mono flex flex-col text-white rounded-md overflow-hidden mt-12 bg-[#313131]">
             <div className="w-full flex justify-evenly p-2 border-b border-gray-200">
               <div className="w-2/6">
-                <p>Reference</p>
+                <p>Referencia</p>
               </div>
               <div className="flex justify-between  items-center w-4/6">
                 <div className="w-2/12">
-                  <p>Content Type</p>
+                  <p>Tipo</p>
                 </div>
                 <div className="w-2/12">
-                  <p>Review time</p>
+                  <p>Revisión</p>
                 </div>
                 <div className="w-3/12">
-                  <p>Last review</p>
+                  <p>Última revisión</p>
                 </div>
                 <div className="w-2/12">
-                  <p>Status</p>
+                  <p>Estado</p>
                 </div>
                 <div className="w-1/12"></div>
               </div>
