@@ -1,17 +1,16 @@
 "use client";
 import axios from "axios";
 
-const accessToken = localStorage.getItem("accessToken");
-const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
 
-export const getScheduledContent = async () => {
+
+export const getScheduledContent = async (token) => {
     try {
         const response = await axios.get(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_SCHEDULE}`,
         {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${cleanAccessToken}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         )
@@ -23,7 +22,7 @@ export const getScheduledContent = async () => {
     }
 }
 
-export const getScheduleById = async (token = cleanAccessToken, id: string) => {
+export const getScheduleById = async (token, id: string) => {
     try {
         const response = await axios.get(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_SCHEDULE}/${id}`,
@@ -41,7 +40,7 @@ export const getScheduleById = async (token = cleanAccessToken, id: string) => {
     }
 }
 
-export const postScheduled = async (content: any) => {
+export const postScheduled = async (token,content: any) => {
     try {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_SCHEDULE}`,
@@ -49,7 +48,7 @@ export const postScheduled = async (content: any) => {
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )
@@ -61,7 +60,25 @@ export const postScheduled = async (content: any) => {
     }
 }
 
-export const updateSchedule = async (id , scheduledTime) => {
+export const deleteSchedule = async (token, id: string) => {
+    try {
+        const response = await axios.delete(
+            `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_SCHEDULE}/${id}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const updateSchedule = async (token,id , scheduledTime) => {
     try {
         const response = await axios.patch(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_SCHEDULE}/${id}`,
@@ -69,7 +86,7 @@ export const updateSchedule = async (id , scheduledTime) => {
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )

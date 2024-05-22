@@ -1,16 +1,14 @@
+"use client";
 import axios from "axios";
 
-const accessToken = localStorage.getItem("accessToken");
-const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
-
-export const getAllAutomations = async () => {
+export const getAllAutomations = async (token) => {
     try {
         const {data} = await axios.get(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_AUTOMATION}`, 
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )
@@ -20,14 +18,14 @@ export const getAllAutomations = async () => {
     }
 }
 
-export const getAutomationById = async (id: string) => {
+export const getAutomationById = async (token,id: string) => {
     try {
         const {data} = await axios.get(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_AUTOMATION}/${id}`,
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )
@@ -37,7 +35,7 @@ export const getAutomationById = async (id: string) => {
     }
 }
 
-export const postAutomation = async (automation: any) => {
+export const postAutomation = async (token,automation: any) => {
     try {
         const {data} = await axios.post(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_AUTOMATION}`, 
@@ -45,7 +43,7 @@ export const postAutomation = async (automation: any) => {
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )
@@ -56,7 +54,7 @@ export const postAutomation = async (automation: any) => {
     
 }
 
-export const updateAutomation = async (id: string, automation: any) => {
+export const updateAutomation = async (token,id: string, automation: any) => {
     console.log(automation)
     const {data} = await axios.patch(
         `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_AUTOMATION}/${id}`,
@@ -64,7 +62,7 @@ export const updateAutomation = async (id: string, automation: any) => {
         {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${cleanAccessToken}`,
+                Authorization: `Bearer ${token}`,
             },
         }
     )
@@ -72,14 +70,14 @@ export const updateAutomation = async (id: string, automation: any) => {
     return data;
 }
 
-export const deleteAutomation = async (id: string) => {
+export const deleteAutomation = async (token,id: string) => {
     try {
         const {data} = await axios.delete(
             `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_AUTOMATION}/${id}`,
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${cleanAccessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         )

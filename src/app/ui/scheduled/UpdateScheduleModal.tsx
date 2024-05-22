@@ -6,10 +6,7 @@ import { format, parseISO } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const accessToken = localStorage.getItem("accessToken");
-const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
-
-export const UpdateScheduleModal = ({ id, closeModal }) => {
+export const UpdateScheduleModal = ({ token, id, closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const dateInput = useRef(null);
@@ -17,11 +14,8 @@ export const UpdateScheduleModal = ({ id, closeModal }) => {
 
   const loadContent = async () => {
     try {
-      let { data } = await getScheduleById(cleanAccessToken, id);
-      const { data: response } = await getContentById(
-        cleanAccessToken,
-        data[0].blogId
-      );
+      let { data } = await getScheduleById(token, id);
+      const { data: response } = await getContentById(token, data[0].blogId);
       console.log(response);
 
       setTitle(response.iaTitle ? response.iaTitle : response.title);
@@ -43,13 +37,11 @@ export const UpdateScheduleModal = ({ id, closeModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { target } = e;
-    console.dir(target);
     const date = target[0].value;
     const time = target[1].value;
     const scheduledTime = formatDate({ date, time });
-    console.log(scheduledTime);
     try {
-      const response = await updateSchedule(id, { scheduledTime });
+      const response = await updateSchedule(token, id, { scheduledTime });
       if (response) {
         toast("Programación actualizada", {
           icon: "✅",
@@ -59,7 +51,6 @@ export const UpdateScheduleModal = ({ id, closeModal }) => {
         setTimeout(() => {
           closeModal("");
         }, 2000);
-        // Todo: Resfrescar la pagina despues de closeModal
       }
     } catch (error) {
       toast("Error al actualizar la programación", {
@@ -68,8 +59,6 @@ export const UpdateScheduleModal = ({ id, closeModal }) => {
         position: "top-right",
       });
     }
-    // Todo: Crear la schedule
-    // Todo: debe refrescar la pagina
   };
 
   return (
@@ -102,13 +91,13 @@ export const UpdateScheduleModal = ({ id, closeModal }) => {
               className="px-4 py-2 bg-[#70FFD9] rounded-lg hover:scale-95 active:scale-90"
               type="submit"
             >
-              {isLoading ? "Scheduling..." : "Schedule"}
+              {isLoading ? "Programando..." : "Programar"}
             </button>
             <button
               className="px-4 py-2 hover:scale-95 hover:bg-red-500 hover:text-white rounded-lg active:scale-90 "
               onClick={() => closeModal("")}
             >
-              Cancel
+              Cancelar
             </button>
           </div>
         </form>

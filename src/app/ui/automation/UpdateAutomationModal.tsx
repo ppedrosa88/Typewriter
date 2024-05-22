@@ -5,8 +5,9 @@ import {
 } from "@/app/lib/automation/fetch";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
-export const UpdateAutomationModal = ({ closeModal, id }) => {
+export const UpdateAutomationModal = ({ token, closeModal, id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [automationContent, setAutomationContent] = useState();
   const router = useRouter();
@@ -17,7 +18,7 @@ export const UpdateAutomationModal = ({ closeModal, id }) => {
 
   const loadAutomationContent = async () => {
     try {
-      const { data } = await getAutomationById(id);
+      const { data } = await getAutomationById(token, id);
       setAutomationContent(data);
       if (data) {
         const { url, review_time, contentType } = data;
@@ -43,18 +44,31 @@ export const UpdateAutomationModal = ({ closeModal, id }) => {
     const review_time = target[1].value;
     const contentType = target[2].value;
     try {
-      const response = await updateAutomation(id, {
+      const response = await updateAutomation(token, id, {
         url,
         review_time,
         contentType,
       });
-      console.log(response);
       if (response) {
+        toast("Automation updated successfully", {
+          position: "top-right",
+          duration: 1500,
+          icon: "🎉",
+        });
         setIsLoading(false);
-        closeModal(false);
-        router.refresh(); // Todo: debe refrescar la pagina
+        setTimeout(() => {
+          setIsLoading(false);
+          window.location.href = window.location.href;
+          closeModal(false);
+        }, 2000);
       }
     } catch (error) {
+      toast("Error creating automation", {
+        position: "top-right",
+        duration: 1500,
+        icon: "❌",
+      });
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -92,7 +106,7 @@ export const UpdateAutomationModal = ({ closeModal, id }) => {
             <option value="24">24 h</option>
             <option value="7">1 week</option>
             <option value="15">15 days</option>
-            <option value="1">1 month</option>
+            <option value="30">1 month</option>
           </select>
           <select
             ref={typeRef}
@@ -122,6 +136,7 @@ export const UpdateAutomationModal = ({ closeModal, id }) => {
           </div>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 };

@@ -8,29 +8,41 @@ import TypeBar from "@/app/ui/content-type/TypeBar";
 import { deleteContentById, getAllContent } from "@/app/lib/content/fetch";
 import { format } from "date-fns";
 import clsx from "clsx";
+import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
 
 export default function Page() {
   const [contentType, setContentType] = useState("blog");
+  const [remove, setRemove] = useState("");
+  const [content, setContent] = useState([]);
+  const { token, error } = useAccessToken();
 
   const handleContentType = (page) => {
     setContentType(page);
   };
 
-  const [remove, setRemove] = useState("");
-  const [edit, setEdit] = useState(false);
-  const [content, setContent] = useState([]);
-  const loadContent = async (type) => {
-    console.log(contentType);
-    const { data } = await getAllContent();
-    data.rows = data.rows.filter(
-      (item) => item.status !== "deleted" && item.category === type
-    );
-    setContent(data.rows);
+  const loadContent = async (token, type) => {
+    try {
+      const { data } = await getAllContent(token);
+      data.rows = data.rows.filter(
+        (item) => item.status !== "deleted" && item.category === type
+      );
+      setContent(data.rows);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    loadContent(contentType);
+    if (token) {
+      loadContent(token, contentType);
+    }
   }, [contentType]);
+
+  useEffect(() => {
+    if (token) {
+      loadContent(token, contentType);
+    }
+  }, [token]);
 
   const handleEdit = (id: string) => {
     console.log(id);
@@ -54,11 +66,8 @@ export default function Page() {
         <nav className="sticky top-0 px-4 py-2 bg-[#313131] w-full flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <ContentType />
-            <p className="font-bold text-lg">Content type</p>
+            <p className="font-bold text-lg py-2">Content type</p>
           </div>
-          <button className="px-4 py-2 bg-[#D98471] rounded-md font-bold hover:scale-105">
-            Add entry
-          </button>
         </nav>
         <div className="w-full">
           <TypeBar
@@ -86,7 +95,7 @@ export default function Page() {
                 <div className="w-2/12">
                   <p>Status</p>
                 </div>
-                <div className="w-1/12"></div>
+                {/* <div className="w-1/12"></div> */}
               </div>
             </div>
             {content &&
@@ -126,10 +135,10 @@ export default function Page() {
                           {con.status}
                         </span>
                       </div>
-                      <div className="w-1/12 flex gap-6">
+                      {/* <div className="w-1/12 flex gap-6">
                         <Edit handleEdit={handleEdit} id={con.id} />
                         <Remove handleRemove={handleRemove} id={con.id} />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 );

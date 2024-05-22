@@ -1,35 +1,38 @@
 "use client";
-import { deleteContentById } from "@/app/lib/content/fetch";
-import React from "react";
+import { getContentById, updateContentById } from "@/app/lib/content/fetch";
 import toast, { Toaster } from "react-hot-toast";
 
-export const RemoveModal = ({ token, id, closeModal }) => {
-  const handleRemove = async () => {
+export const EditStatusModal = ({ token, id, closeModal }) => {
+  const handleChange = async () => {
     try {
-      const response = await deleteContentById(token, id);
+      const response = await getContentById(token, id);
       if (response) {
-        toast("Content removed successfully", {
-          position: "top-right",
-          duration: 1500,
-          icon: "👏",
+        let status;
+        if (response.data.status === "published") {
+          status = "draft";
+        } else {
+          status = "published";
+        }
+
+        const res = await updateContentById(token, id, {
+          ...response.data,
+          status,
         });
-        setTimeout(() => {
-          closeModal("");
-        }, 2000);
+        if (res.ok) {
+          toast("Content updated successfully", {
+            position: "top-right",
+            duration: 1500,
+            icon: "👏",
+          });
+          setTimeout(() => {
+            closeModal("");
+          }, 2000);
+        }
       }
     } catch (error) {
-      toast("Error removing content", {
-        position: "top-right",
-        duration: 1500,
-        icon: "👎",
-      });
-
-      setTimeout(() => {
-        closeModal("");
-      }, 2000);
+      console.log(error);
     }
   };
-
   return (
     <div className="absolute top-0 bottom-0 right-0 left-0 after:bg-[#151515] after:content[''] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:opacity-50 flex justify-center items-center z-50">
       <div className="bg-white  text-black z-10 p-6 rounded-xl shadow-2xl">
@@ -53,18 +56,18 @@ export const RemoveModal = ({ token, id, closeModal }) => {
           </svg>
         </div>
         <p className="mb-4 text-2xl font-bold text-center">
-          Vas a eliminar esta publicación.
+          Vas a cambiar el estado de esta entrada.
         </p>
         <p className="text-2xl font-bold text-center mb-12">¿Estás seguro?</p>
         <div className="flex gap-6 justify-center font-bold">
           <button
             className="px-4 py-2 hover:scale-95 hover:bg-red-500 hover:text-white rounded-lg active:scale-90"
-            onClick={handleRemove}
+            onClick={handleChange}
           >
-            Eliminar
+            Cambiar estado
           </button>
           <button
-            className="px-4 py-2 bg-[#70FFD9] rounded-lg hover:scale-95 active:scale-90 scro"
+            className="px-4 py-2 bg-[#70FFD9] rounded-lg hover:scale-95 active:scale-90"
             onClick={() => closeModal("")}
           >
             Cancelar

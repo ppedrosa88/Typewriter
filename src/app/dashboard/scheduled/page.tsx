@@ -1,4 +1,5 @@
 "use client";
+import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
 import { getContentById } from "@/app/lib/content/fetch";
 import { getScheduledContent } from "@/app/lib/schedule/fetch";
 import { Edit } from "@/app/ui/components/Edit";
@@ -12,8 +13,7 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const accessToken = localStorage.getItem("accessToken");
-  const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
+  const { token, error } = useAccessToken();
 
   const [remove, setRemove] = useState("");
   const [contentType, setContentType] = useState("active");
@@ -21,22 +21,34 @@ export default function Page() {
   const [scheduleModal, setScheduleModal] = useState(false);
   const [editId, setEditId] = useState("");
 
-  const loadContent = async (type) => {
-    const { data: scheduledData } = await getScheduledContent();
-    let response = await Promise.all(
-      scheduledData.map(async (item) => {
-        const { data } = await getContentById(cleanAccessToken, item.blogId);
-        const { iaTitle, title, category } = data;
-        return { ...item, iaTitle, title, category };
-      })
-    );
-    const newResponse = response.filter((item) => item.status === type);
-    setContentScheduled(newResponse);
+  const loadContent = async (type, token) => {
+    try {
+      const { data: scheduledData } = await getScheduledContent(token);
+      let response = await Promise.all(
+        scheduledData.map(async (item) => {
+          const { data } = await getContentById(token, item.blogId);
+          const { iaTitle, title, category } = data;
+          return { ...item, iaTitle, title, category };
+        })
+      );
+      const newResponse = response.filter((item) => item.status === type);
+      setContentScheduled(newResponse);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    loadContent(contentType);
+    if (token) {
+      loadContent(contentType, token);
+    }
   }, [contentType]);
+
+  useEffect(() => {
+    if (token) {
+      loadContent(contentType, token);
+    }
+  }, [token]);
 
   const handleRemove = (id: string) => {
     setRemove(id);
@@ -61,7 +73,7 @@ export default function Page() {
             onClick={() => setScheduleModal(true)}
             className="px-4 py-2 bg-[#D98471] rounded-md font-bold hover:scale-105"
           >
-            Add Schedule
+            Programar
           </button>
         </nav>
         <Scheduledbar handleContent={handleContentType} content={contentType} />
@@ -120,14 +132,14 @@ export default function Page() {
         </div>
       </div>
       {remove !== "" ? (
-        <CancelScheduleModal id={remove} closeModal={setRemove} />
+        <CancelScheduleModal token={token} id={remove} closeModal={setRemove} />
       ) : null}
       {scheduleModal ? (
-        <CreateScheduleModal closeModal={setScheduleModal} />
+        <CreateScheduleModal token={token} closeModal={setScheduleModal} />
       ) : null}
 
       {editId !== "" ? (
-        <UpdateScheduleModal id={editId} closeModal={setEditId} />
+        <UpdateScheduleModal token={token} id={editId} closeModal={setEditId} />
       ) : null}
     </div>
   );

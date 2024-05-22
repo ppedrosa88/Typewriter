@@ -1,9 +1,8 @@
+"use client";
 import axios from "axios";
 
-const accessToken = localStorage.getItem("accessToken");
-const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
-
-export const getAllContent = async (token = cleanAccessToken) => {
+export const getAllContent = async (token) => {
+  console.log(token);
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}`,
@@ -20,7 +19,7 @@ export const getAllContent = async (token = cleanAccessToken) => {
   }
 };
 
-export const getContentById = async (token = cleanAccessToken, id: string) => {
+export const getContentById = async (token, id: string) => {
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/${id}`,
@@ -37,7 +36,7 @@ export const getContentById = async (token = cleanAccessToken, id: string) => {
   }
 };
 
-export const postContent = async (content: any) => {
+export const postContent = async (token, content: any) => {
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}`,
@@ -45,7 +44,7 @@ export const postContent = async (content: any) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${cleanAccessToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -53,7 +52,7 @@ export const postContent = async (content: any) => {
   } catch (error) {}
 };
 
-export const updateContentById = async (id: string, content: any) => {
+export const updateContentById = async (token, id: string, content: any) => {
   try {
     const response = await axios.patch(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/${id}`,
@@ -61,7 +60,7 @@ export const updateContentById = async (id: string, content: any) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${cleanAccessToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -71,22 +70,41 @@ export const updateContentById = async (id: string, content: any) => {
   }
 };
 
-export const deleteContentById = async (id: string) => {
+export const deleteContentById = async (token, id: string) => {
   try {
     const response = await axios.delete(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/${id}`,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${cleanAccessToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const postByAi = async (content: any) => {
+export const totallyRemoveContentById = async (token, id: string) => {
+  try {
+    const response = await axios.delete(
+      `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/trash/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postByAi = async (token, content: any) => {
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/ia`,
@@ -94,7 +112,7 @@ export const postByAi = async (content: any) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${cleanAccessToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

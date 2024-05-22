@@ -9,21 +9,33 @@ import { CancelAutomationModal } from "@/app/ui/automation/CancelAutomationModal
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { UpdateAutomationModal } from "@/app/ui/automation/UpdateAutomationModal";
+import { format } from "date-fns";
+import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
+import { error } from "console";
 
 export default function Page() {
   const [newAutomation, setNewAutomation] = useState(false); // TODO: change to false
   const [remove, setRemove] = useState("");
   const [content, setContent] = useState([]);
   const [update, setUpdate] = useState(false);
+  const { token, error } = useAccessToken();
 
   const loadContent = async () => {
-    const { data } = await getAllAutomations();
-    setContent(data);
+    try {
+      const response = await getAllAutomations(token);
+      if (response && response.data) {
+        setContent(response.data);
+      }
+    } catch (error) {
+      console.error("Error al obtener el contenido:", error);
+    }
   };
 
   useEffect(() => {
-    loadContent();
-  }, []);
+    if (token) {
+      loadContent(token);
+    }
+  }, [token]);
 
   const handleRemove = (id: string) => {
     setRemove(id);
@@ -35,6 +47,39 @@ export default function Page() {
 
   const handleOpenNewAutomation = () => {
     setNewAutomation(true);
+  };
+
+  const mapReviewTime = (reviewTime) => {
+    switch (reviewTime) {
+      case 1:
+        return "1 mes";
+      case 7:
+        return "1 semana";
+      case 15:
+        return "15 días";
+      case 24:
+        return "1 día";
+      default:
+        return reviewTime;
+    }
+  };
+
+  const search = async (event) => {
+    setTimeout(async () => {
+      let data = await getAllAutomations(token);
+      if (event.target.value === "") {
+        loadContent();
+      } else {
+        data = data.data.filter(
+          (item) =>
+            item.url.toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.contentType
+              .toLowerCase()
+              .includes(event.target.value.toLowerCase())
+        );
+        setContent(data);
+      }
+    }, 500);
   };
 
   return (
@@ -61,6 +106,7 @@ export default function Page() {
             </p>
 
             <input
+              onChange={search}
               type="text"
               placeholder="Type to search by url"
               className="p-2 w-full h-full outline-none bg-gray-50"
@@ -80,7 +126,7 @@ export default function Page() {
                 <div className="w-2/12">
                   <p>Review time</p>
                 </div>
-                <div className="w-2/12">
+                <div className="w-3/12">
                   <p>Last review</p>
                 </div>
                 <div className="w-2/12">
@@ -94,21 +140,23 @@ export default function Page() {
                 return (
                   <div
                     key={con.id}
-                    className="group relative w-full flex justify-evenly p-2 border-b border-gray-200"
+                    className="group relative w-full flex items-center justify-evenly p-2 border-b border-gray-200"
                   >
                     <div className="w-2/6 z-10">
                       <p className="truncate pr-4">{con.url}</p>
                     </div>
                     <div className="flex w-4/6 justify-between items-center ">
                       <div className="w-2/12  z-10">
-                        <p>{con.contentType}</p>
+                        <p className="capitalize">{con.contentType}</p>
                       </div>
                       <div className="w-2/12 z-10">
-                        <p>{con.review_time}</p>
+                        <p>{mapReviewTime(con.review_time)}</p>
                       </div>
-                      <div className="w-2/12 z-10">
+                      <div className="w-3/12 z-10">
                         <p>
-                          {con.last_review_date ? con.last_review_date : "-"}
+                          {con.last_review_date
+                            ? format(con.last_review_date, "dd/MM/yyyy HH:mm")
+                            : "-"}
                         </p>
                       </div>
                       <div className="w-2/12 z-10">
@@ -129,7 +177,7 @@ export default function Page() {
                         <Remove handleRemove={handleRemove} id={con.id} />
                       </div>
                     </div>
-                    <div className="absolute top-0 right-0 bottom-0 left-0 group-hover:bg-[#D98471] opacity-30"></div>
+                    <div className="absolute top-0 right-0 bottom-0 left-0 group-hover:bg-[#D98471]"></div>
                   </div>
                 );
               })}
@@ -137,14 +185,22 @@ export default function Page() {
         </div>
       </div>
       {remove !== "" ? (
-        <CancelAutomationModal id={remove} closeModal={setRemove} />
+        <CancelAutomationModal
+          token={token}
+          id={remove}
+          closeModal={setRemove}
+        />
       ) : null}
 
       {newAutomation ? (
-        <NewAutomationModal closeModal={setNewAutomation} />
+        <NewAutomationModal token={token} closeModal={setNewAutomation} />
       ) : null}
       {update ? (
-        <UpdateAutomationModal id={update} closeModal={setUpdate} />
+        <UpdateAutomationModal
+          token={token}
+          id={update}
+          closeModal={setUpdate}
+        />
       ) : null}
     </div>
   );

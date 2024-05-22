@@ -7,19 +7,19 @@ export default function Scheduledbar({ handleContent, content }) {
         onClick={() => handleContent("active")}
         className={clsx(["px-4 py-2", { active: content === "active" }])}
       >
-        Scheduled
+        Programadas
       </button>
       <button
         onClick={() => handleContent("inactive")}
         className={clsx(["px-4 py-2", { active: content === "inactive" }])}
       >
-        Completed
+        Completadas
       </button>
       <button
         onClick={() => handleContent("fail")}
         className={clsx(["px-4 py-2", { active: content === "fail" }])}
       >
-        Failed
+        Fallidas
       </button>
     </div>
   );

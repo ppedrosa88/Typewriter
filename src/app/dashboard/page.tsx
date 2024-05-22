@@ -11,8 +11,10 @@ import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { ChangeStatusModal } from "../ui/dashboard/ChangeStatusModal";
 import { NewAiPostModal } from "../ui/dashboard/NewAiPostModal";
+import { useAccessToken } from "../lib/auth/customHooks/useAccessToken";
 
 export default function Page() {
+  const { token, error } = useAccessToken();
   const [remove, setRemove] = useState("");
   const [newAiPost, setNewAiPost] = useState(false);
   const [changeStatus, setChangeStatus] = useState("");
@@ -21,22 +23,28 @@ export default function Page() {
   const router = useRouter();
   const selectRef = useRef(null);
 
-  const accessToken = localStorage.getItem("accessToken");
-  const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
+  const loadContent = async (access_token) => {
+    try {
+      const response = await getAllContent(access_token);
 
-  const loadContent = async () => {
-    const response = await getAllContent(cleanAccessToken);
-    if (response.data) {
-      const { data } = response;
-      data.rows = data.rows.filter((item) => item.status !== "deleted");
-      setContent(data.rows);
-      return data.rows;
+      if (response && response.data) {
+        const { data } = response;
+        data.rows = data.rows.filter(
+          (item) => item.status !== "deleted" && item.status !== "inactive"
+        );
+        setContent(data.rows);
+        return data.rows;
+      }
+    } catch (error) {
+      console.error("Error al obtener el contenido:", error);
     }
   };
 
   useEffect(() => {
-    loadContent();
-  }, []);
+    if (token) {
+      loadContent(token);
+    }
+  }, [token]);
 
   const handleEdit = (id: string) => {
     router.push(`/dashboard/edit-entry/${id}`);
@@ -54,7 +62,7 @@ export default function Page() {
   };
 
   const searchType = async (event) => {
-    const data = await loadContent();
+    const data = await loadContent(token);
     if (event.target.value !== "") {
       const search = data.filter(
         (item) => item.createdByIa === Number(event.target.value)
@@ -66,7 +74,7 @@ export default function Page() {
 
   const search = async (event) => {
     setTimeout(async () => {
-      let data = await loadContent();
+      let data = await loadContent(token);
       if (selectRef.current.value !== "") {
         data = data.filter(
           (item) => item.createdByIa === Number(selectRef.current.value)
@@ -93,6 +101,17 @@ export default function Page() {
   useEffect(() => {}, [content]);
   const handleAiNewPost = () => {
     setNewAiPost(true);
+  };
+
+  const statusSwitch = (status) => {
+    switch (status) {
+      case "draft":
+        return "Borrador";
+      case "published":
+        return "Publicado";
+      case "deleted":
+        return "Eliminado";
+    }
   };
 
   return (
@@ -147,25 +166,26 @@ export default function Page() {
           <div className="w-full font-mono flex flex-col text-white rounded-md overflow-hidden mt-12 bg-[#313131]">
             <div className="w-full flex justify-evenly p-2 border-b border-gray-200">
               <div className="flex-1 w-2/6 pr-2">
-                <p>Name</p>
+                <p>Nombre</p>
               </div>
               <div className="flex justify-between items-center w-4/6">
                 <div className="w-2/12">
-                  <p>Content Type</p>
+                  <p>Tipo</p>
                 </div>
                 <div className="w-2/12">
-                  <p>Activity</p>
+                  <p>Actividad</p>
                 </div>
                 <div className="w-2/12">
-                  <p>Created</p>
+                  <p>Creado</p>
                 </div>
                 <div className="w-2/12">
-                  <p>Status</p>
+                  <p>Estado</p>
                 </div>
                 <div className="w-2/12"></div>
               </div>
             </div>
             {content &&
+              token &&
               content.map((con) => {
                 return (
                   <div
@@ -214,7 +234,7 @@ export default function Page() {
                             }
                           )}
                         >
-                          {con.status}
+                          {statusSwitch(con.status)}
                         </span>
                       </div>
                       <div className="w-2/12 flex gap-4 z-10 justify-center">
@@ -235,13 +255,19 @@ export default function Page() {
       </div>
 
       {remove !== "" ? (
-        <RemoveModal id={remove} closeModal={setRemove} />
+        <RemoveModal token={token} id={remove} closeModal={setRemove} />
       ) : null}
 
       {changeStatus !== "" ? (
-        <ChangeStatusModal id={changeStatus} closeModal={setChangeStatus} />
+        <ChangeStatusModal
+          token={token}
+          id={changeStatus}
+          closeModal={setChangeStatus}
+        />
       ) : null}
-      {newAiPost ? <NewAiPostModal closeModal={setNewAiPost} /> : null}
+      {newAiPost ? (
+        <NewAiPostModal token={token} closeModal={setNewAiPost} />
+      ) : null}
     </div>
   );
 }

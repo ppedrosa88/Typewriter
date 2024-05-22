@@ -5,9 +5,11 @@ import { useState } from "react";
 import { parseHTML } from "@/app/lib/content/htmlParser";
 import { postContent } from "@/app/lib/content/fetch";
 import toast, { Toaster } from "react-hot-toast";
+import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
 
 export default function Page() {
   const [value, setValue] = useState("");
+  const { token, error } = useAccessToken();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,17 +22,19 @@ export default function Page() {
     };
 
     try {
-      const response = await postContent(post);
-      if (response) {
-        console.log(response);
-        event.target[1].value = "";
-        event.target[0].value = "";
-        setValue("");
-        toast("Post creado con exito", {
-          position: "top-right",
-          duration: 1500,
-          icon: "🎉",
-        });
+      if (token) {
+        const response = await postContent(token, post);
+        if (response) {
+          console.log(response);
+          event.target[1].value = "";
+          event.target[0].value = "";
+          setValue("");
+          toast("Post creado con exito", {
+            position: "top-right",
+            duration: 1500,
+            icon: "🎉",
+          });
+        }
       }
     } catch (error) {
       console.log(error);

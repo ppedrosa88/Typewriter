@@ -2,19 +2,19 @@ import { getAllContent } from "@/app/lib/content/fetch";
 import { getScheduledContent, postScheduled } from "@/app/lib/schedule/fetch";
 import { formatDate } from "@/app/lib/utils/time";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
-export const CreateScheduleModal = ({ closeModal }) => {
+export const CreateScheduleModal = ({ token, closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState([]);
 
   const loadContent = async () => {
     try {
-      const { data } = await getAllContent();
+      const { data } = await getAllContent(token);
       data.rows = await data.rows.filter((item) => item.status === "draft");
       setContent(data.rows);
-      console.log(data.rows);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   useEffect(() => {
@@ -29,17 +29,29 @@ export const CreateScheduleModal = ({ closeModal }) => {
     const time = target[2].value;
     const scheduledTime = formatDate({ date, time });
     try {
-      const response = await postScheduled({ blogId, scheduledTime });
-      console.log(response);
+      const response = await postScheduled(token, { blogId, scheduledTime });
       if (response) {
-        closeModal(false);
-        // Todo: Resfrescar la pagina despues de closeModal
+        toast("Programación creada", {
+          icon: "✅",
+          position: "top-right",
+          duration: 1500,
+        });
+
+        setTimeout(() => {
+          setIsLoading(false);
+          closeModal(false);
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
+      toast("Error al crear la programación", {
+        icon: "❌",
+        position: "top-right",
+        duration: 1500,
+      });
+
+      setIsLoading(false);
     }
-    // Todo: Crear la schedule
-    // Todo: debe refrescar la pagina
   };
 
   return (
@@ -90,6 +102,7 @@ export const CreateScheduleModal = ({ closeModal }) => {
           </div>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 };

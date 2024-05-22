@@ -2,13 +2,10 @@
 import { getContentById, updateContentById } from "@/app/lib/content/fetch";
 import toast, { Toaster } from "react-hot-toast";
 
-const accessToken = localStorage.getItem("accessToken");
-const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
-
-export const ChangeStatusModal = ({ id, closeModal }) => {
+export const ChangeStatusModal = ({ token, id, closeModal }) => {
   const handleChange = async () => {
     try {
-      const response = await getContentById(cleanAccessToken, id);
+      const response = await getContentById(token, id);
       if (response) {
         let status;
         if (response.data.status === "published") {
@@ -17,7 +14,7 @@ export const ChangeStatusModal = ({ id, closeModal }) => {
           status = "published";
         }
 
-        const res = await updateContentById(id, {
+        const res = await updateContentById(token, id, {
           ...response.data,
           status,
         });
@@ -36,6 +33,7 @@ export const ChangeStatusModal = ({ id, closeModal }) => {
       console.log(error);
     }
   };
+
   return (
     <div className="absolute top-0 bottom-0 right-0 left-0 after:bg-[#151515] after:content[''] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:opacity-50 flex justify-center items-center z-50">
       <div className="bg-white  text-black z-10 p-6 rounded-xl shadow-2xl">

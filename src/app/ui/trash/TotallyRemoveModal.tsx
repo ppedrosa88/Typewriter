@@ -1,14 +1,13 @@
-"use client";
-import { deleteContentById } from "@/app/lib/content/fetch";
+import { totallyRemoveContentById } from "@/app/lib/content/fetch";
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-export const RemoveModal = ({ token, id, closeModal }) => {
+export const TotallyRemoveModal = ({ token, id, closeModal }) => {
   const handleRemove = async () => {
     try {
-      const response = await deleteContentById(token, id);
+      const response = await totallyRemoveContentById(token, id);
       if (response) {
-        toast("Content removed successfully", {
+        toast("El contenido fue eliminado", {
           position: "top-right",
           duration: 1500,
           icon: "👏",
@@ -18,7 +17,7 @@ export const RemoveModal = ({ token, id, closeModal }) => {
         }, 2000);
       }
     } catch (error) {
-      toast("Error removing content", {
+      toast("Error al eliminar el contenido", {
         position: "top-right",
         duration: 1500,
         icon: "👎",
@@ -53,7 +52,7 @@ export const RemoveModal = ({ token, id, closeModal }) => {
           </svg>
         </div>
         <p className="mb-4 text-2xl font-bold text-center">
-          Vas a eliminar esta publicación.
+          Vas a eliminar esta publicación para siempre.
         </p>
         <p className="text-2xl font-bold text-center mb-12">¿Estás seguro?</p>
         <div className="flex gap-6 justify-center font-bold">

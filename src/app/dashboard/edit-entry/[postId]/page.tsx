@@ -10,21 +10,20 @@ import {
 } from "@/app/lib/content/fetch";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
 
 export default function Page({ params }: { params: { postId: string } }) {
   const router = useRouter();
   const { postId } = params;
   const [value, setValue] = useState("");
+  const { token, error } = useAccessToken();
 
-  const accessToken = localStorage.getItem("accessToken");
-  const cleanAccessToken = accessToken.replace(/^"|"$/g, "");
   const title = useRef(null);
   const type = useRef(null);
 
-  const loadContent = async () => {
+  const loadContent = async (access_token) => {
     try {
-      const { data } = await getContentById(cleanAccessToken, postId);
-      console.log(data);
+      const { data } = await getContentById(access_token, postId);
       if (data) {
         title.current.value = data.title;
         type.current.value = data.category;
@@ -37,8 +36,10 @@ export default function Page({ params }: { params: { postId: string } }) {
   };
 
   useEffect(() => {
-    loadContent();
-  }, []);
+    if (token) {
+      loadContent(token);
+    }
+  }, [token]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,12 +52,12 @@ export default function Page({ params }: { params: { postId: string } }) {
     };
 
     try {
-      const response = await updateContentById(postId, post);
+      const response = await updateContentById(token, postId, post);
       if (response) {
         event.target[1].value = "";
         event.target[0].value = "";
         setValue("");
-        toast("Post creado con exito", {
+        toast("Post actualizado con exito", {
           position: "top-right",
           duration: 1500,
           icon: "🎉",
@@ -68,7 +69,7 @@ export default function Page({ params }: { params: { postId: string } }) {
       }
     } catch (error) {
       console.log(error);
-      toast("Error al crear el post", {
+      toast("Error al actualizar el post", {
         position: "top-right",
         duration: 1500,
         icon: "❌",

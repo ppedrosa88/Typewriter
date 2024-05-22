@@ -1,11 +1,9 @@
 "use client";
-import { postAutomation } from "@/app/lib/automation/fetch";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { postByAi } from "@/app/lib/content/fetch";
 
-export const NewAiPostModal = ({ closeModal }) => {
+export const NewAiPostModal = ({ token, closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
   //   const router = useRouter();
   const handleSubmit = async (event) => {
@@ -16,8 +14,8 @@ export const NewAiPostModal = ({ closeModal }) => {
     const category = target[1].value;
 
     try {
-      const response = await postByAi({ url, category });
-      console.log(response);
+      const response = await postByAi(token, { url, category });
+
       if (response.ok) {
         toast("Post creado con exito", {
           position: "top-right",
@@ -36,16 +34,6 @@ export const NewAiPostModal = ({ closeModal }) => {
         icon: "👎",
       });
     }
-    // try {
-    //   const response = await postAutomation({ url, review_time, contentType });
-    //   if (response) {
-    //     setIsLoading(false);
-    //     closeModal(false);
-    //     router.refresh();
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   return (

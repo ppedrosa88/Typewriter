@@ -46,7 +46,7 @@ const links = [
   },
   {
     name: "Papelera",
-    href: "/dashboard/status",
+    href: "/dashboard/trash",
     icon: Status,
   },
 ];

@@ -1,18 +1,19 @@
+"use client";
 import { deleteAutomation } from "@/app/lib/automation/fetch";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export const CancelAutomationModal = ({ closeModal, id }) => {
+export const CancelAutomationModal = ({ token, closeModal, id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleDelete = async () => {
     setIsLoading(true);
     try {
-      const response = await deleteAutomation(id);
-      console.log(response);
+      const response = await deleteAutomation(token, id);
       if (response) {
         setIsLoading(false);
-        closeModal(""); // Todo: Resfrescar la pagina despues de closeModal
+        window.location.href = window.location.href;
+        closeModal("");
       }
     } catch (error) {
       console.log(error);

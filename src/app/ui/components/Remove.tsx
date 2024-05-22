@@ -5,7 +5,7 @@ export const Remove = ({ handleRemove, id }) => {
     handleRemove(id);
   };
   return (
-    <button className="w-1/6 " onClick={onRemove}>
+    <button className="w-1/6" onClick={onRemove}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

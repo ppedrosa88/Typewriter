@@ -1,4 +1,36 @@
-export const CancelScheduleModal = ({ closeModal, id }) => {
+import { deleteSchedule } from "@/app/lib/schedule/fetch";
+import toast, { Toaster } from "react-hot-toast";
+
+export const CancelScheduleModal = ({ token, closeModal, id }) => {
+  const handleDelete = async () => {
+    try {
+      const response = await deleteSchedule(token, id);
+      if (response.ok) {
+        toast("Schedule deleted successfully", {
+          position: "top-right",
+          duration: 1500,
+          icon: "👏",
+        });
+
+        setTimeout(() => {
+          closeModal("");
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+
+      toast("Error deleting schedule", {
+        position: "top-right",
+        duration: 1500,
+        icon: "👎",
+      });
+
+      setTimeout(() => {
+        closeModal("");
+      }, 2000);
+    }
+  };
+
   return (
     <div className="absolute top-0 bottom-0 right-0 left-0 after:bg-[#151515] after:content[''] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:opacity-50 flex justify-center items-center">
       <div className="bg-white  text-black z-10 p-6 rounded-xl shadow-2xl">
@@ -22,24 +54,25 @@ export const CancelScheduleModal = ({ closeModal, id }) => {
           </svg>
         </div>
         <p className="mb-4 text-2xl font-bold text-center">
-          It will eliminate the publication schedule.
+          Vas a eliminar la programación de tu contenido.
         </p>
-        <p className="text-2xl font-bold text-center mb-12">Are you sure?</p>
+        <p className="text-2xl font-bold text-center mb-12">¿Estás seguro?</p>
         <div className="flex gap-6 justify-center font-bold ">
           <button
             className="px-4 py-2 hover:scale-95 hover:bg-red-500 hover:text-white rounded-lg active:scale-90"
-            onClick={() => closeModal("")}
+            onClick={handleDelete}
           >
-            Remove
+            Eliminar
           </button>
           <button
             className="px-4 py-2 bg-[#70FFD9] rounded-lg hover:scale-95 active:scale-90"
             onClick={() => closeModal("")}
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
