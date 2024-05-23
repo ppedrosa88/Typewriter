@@ -2,6 +2,7 @@
 import { deleteAutomation } from "@/app/lib/automation/fetch";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export const CancelAutomationModal = ({ token, closeModal, id }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,11 +13,27 @@ export const CancelAutomationModal = ({ token, closeModal, id }) => {
       const response = await deleteAutomation(token, id);
       if (response) {
         setIsLoading(false);
-        window.location.href = window.location.href;
-        closeModal("");
+        toast("Automation deleted successfully", {
+          position: "top-right",
+          duration: 1500,
+          icon: "🎉",
+        });
+        setTimeout(() => {
+          window.location.href = window.location.href;
+          closeModal("");
+        }, 2000);
       }
     } catch (error) {
-      console.log(error);
+      setIsLoading(false);
+      toast("Error deleting automation", {
+        position: "top-right",
+        duration: 1500,
+        icon: "👎",
+      });
+      setTimeout(() => {
+        window.location.href = window.location.href;
+        closeModal("");
+      }, 2000);
     }
   };
   return (
@@ -60,6 +77,7 @@ export const CancelAutomationModal = ({ token, closeModal, id }) => {
           </button>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

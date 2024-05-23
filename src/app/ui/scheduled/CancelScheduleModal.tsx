@@ -13,6 +13,7 @@ export const CancelScheduleModal = ({ token, closeModal, id }) => {
         });
 
         setTimeout(() => {
+          window.location.href = window.location.href;
           closeModal("");
         }, 2000);
       }

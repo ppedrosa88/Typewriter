@@ -10,7 +10,6 @@ import toast, { Toaster } from "react-hot-toast";
 export const UpdateAutomationModal = ({ token, closeModal, id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [automationContent, setAutomationContent] = useState();
-  const router = useRouter();
 
   const urlRef = useRef(null);
   const frequencyRef = useRef(null);
@@ -69,7 +68,6 @@ export const UpdateAutomationModal = ({ token, closeModal, id }) => {
         icon: "❌",
       });
       setIsLoading(false);
-      console.log(error);
     }
   };
 

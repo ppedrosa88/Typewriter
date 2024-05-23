@@ -18,14 +18,16 @@ export default function PostDetail({ params }: { params: { postId: string } }) {
   async function loadContent() {
     const { data } = await getContentById(cleanAccessToken, postId);
     setContent(data);
-    console.log(data);
     if (data.createdByIa === 0) {
       const byMeContent = data.content.map((item) => {
         return { tag: item.tag, text: item.text };
       });
 
-      const byMe = { title: data.title, content: byMeContent };
-      console.log(byMe);
+      const byMe = {
+        title: data.title,
+        url: data.reference,
+        content: byMeContent,
+      };
       if (byMe) {
         setContentByMe(byMe);
       }
@@ -36,7 +38,11 @@ export default function PostDetail({ params }: { params: { postId: string } }) {
         return { tag: item.tag, text: item.iaData };
       });
 
-      const byIa = { title: data.iaTitle, content: byIaContent };
+      const byIa = {
+        title: data.iaTitle,
+        url: data.reference,
+        content: byIaContent,
+      };
       setContentByIa(byIa);
     }
     setContent(data);

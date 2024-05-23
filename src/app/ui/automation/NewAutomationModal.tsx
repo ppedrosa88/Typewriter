@@ -39,7 +39,6 @@ export const NewAutomationModal = ({ token, closeModal }) => {
         icon: "❌",
       });
       setIsLoading(false);
-      console.log(error);
     }
   };
 

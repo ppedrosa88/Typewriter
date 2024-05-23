@@ -25,12 +25,17 @@ export const ChangeStatusModal = ({ token, id, closeModal }) => {
             icon: "👏",
           });
           setTimeout(() => {
+            window.location.href = window.location.href;
             closeModal("");
           }, 2000);
         }
       }
     } catch (error) {
-      console.log(error);
+      toast("Error updating content", {
+        position: "top-right",
+        duration: 1500,
+        icon: "👎",
+      });
     }
   };
 

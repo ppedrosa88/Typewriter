@@ -1,12 +1,20 @@
 import React from "react";
 
 export const Content = ({ data, isIa }) => {
-  console.log(data);
-  const { title, content } = data;
+  const { title, url, content } = data;
 
   return (
     <div className="w-full py-12 px-8 flex flex-col justify-center">
-      <h1 className="text-2xl">{title}</h1>
+      {url && (
+        <a
+          href={url}
+          target="_blank"
+          className="text-sm hover:text-blue-300 mb-6"
+        >
+          {url}
+        </a>
+      )}
+      <h1 className="text-3xl">{title}</h1>
 
       <div className="py-4">
         {isIa === 0

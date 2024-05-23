@@ -49,6 +49,7 @@ export const UpdateScheduleModal = ({ token, id, closeModal }) => {
           duration: 1500,
         });
         setTimeout(() => {
+          window.location.href = window.location.href;
           closeModal("");
         }, 2000);
       }

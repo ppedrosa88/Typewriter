@@ -24,6 +24,7 @@ export const NewAiPostModal = ({ token, closeModal }) => {
         });
         setTimeout(() => {
           setIsLoading(false);
+          window.location.href = window.location.href;
           closeModal(false);
         }, 2000);
       }

@@ -13,6 +13,7 @@ export const TotallyRemoveModal = ({ token, id, closeModal }) => {
           icon: "👏",
         });
         setTimeout(() => {
+          window.location.href = window.location.href;
           closeModal("");
         }, 2000);
       }
@@ -24,6 +25,7 @@ export const TotallyRemoveModal = ({ token, id, closeModal }) => {
       });
 
       setTimeout(() => {
+        window.location.href = window.location.href;
         closeModal("");
       }, 2000);
     }

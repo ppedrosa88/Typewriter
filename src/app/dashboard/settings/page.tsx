@@ -1,12 +1,12 @@
 "use client";
 
-import { deleteApiKey, getApiKeys } from "@/app/lib/apiKey/fetch";
+import { getApiKeys } from "@/app/lib/apiKey/fetch";
 import { useAccessToken } from "@/app/lib/auth/customHooks/useAccessToken";
 import { getUserById } from "@/app/lib/auth/fetch";
 import { CreateApiKeyModal } from "@/app/ui/apiKey/CreateApiKeyModal";
 import { RemoveApiKeyModal } from "@/app/ui/apiKey/RemoveApiKeyModal";
-import { Remove } from "@/app/ui/components/Remove";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { Settings } from "@/app/ui/components/Settings";
+
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
@@ -64,24 +64,39 @@ export default function Page() {
   return (
     <div className=" flex flex-col h-full ">
       <div className="w-full h-full font-mono flex flex-col bg-[#151515] rounded-md overflow-hidden ">
-        {user && <div className="p-4">{JSON.stringify(user, null, 2)}</div>}
-        {user && (
-          <div className="p-4">
-            <h2>Nombre: {user.name}</h2>
-            <p>Apellidos: {user.surname}</p>
-            <p>Email: {user.email}</p>
+        <nav className="sticky top-0 px-4 py-2 bg-[#313131] w-full flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Settings />
+            <p className="font-bold text-lg py-2">Settings</p>
           </div>
-        )}
+        </nav>
+        <div className="w-full flex justify-center pt-4">
+          {user && (
+            <div className="m-4 p-4 w-4/6 bg-gray-50 text-black rounded-xl">
+              <p className="font-bold mb-2">
+                Nombre:{" "}
+                <span className="font-normal capitalize">{user.name}</span>
+              </p>
+              <p className="font-bold mb-2">
+                Apellidos:{" "}
+                <span className="font-normal capitalize">{user.surname}</span>
+              </p>
+              <p className="font-bold">
+                Email: <span className="font-normal ">{user.email}</span>
+              </p>
+            </div>
+          )}
+        </div>
 
-        <div className="w-full flex justify-center pt-20">
-          <div className="w-1/2 flex flex-col bg-white text-black justify-between rounded-md">
+        <div className="w-full flex justify-center pt-6">
+          <div className="w-4/6  flex flex-col bg-gray-50 text-black justify-between rounded-xl">
             <div className="p-4 flex justify-between items-center ">
-              <p>Generacion de api key</p>
+              <p className="font-bold">API keys</p>
               <button
                 onClick={() => setOpenNewApiKey(true)}
                 className="px-4 py-2 bg-[#D98471] rounded-md font-bold hover:scale-105"
               >
-                Nueva ApiKey
+                Nueva API key
               </button>
             </div>
 

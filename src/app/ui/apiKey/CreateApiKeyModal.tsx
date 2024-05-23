@@ -18,7 +18,6 @@ export const CreateApiKeyModal = ({ token, closeModal }) => {
 
     try {
       const response = await createApiKey(token, { name });
-      console.log(response);
       if (response) {
         toast("API Key creado satisfactoriamente", {
           position: "top-right",

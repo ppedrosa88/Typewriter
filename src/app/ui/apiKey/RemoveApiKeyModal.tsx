@@ -14,6 +14,7 @@ export const RemoveApiKeyModal = ({ token, closeModal, id }) => {
         });
 
         setTimeout(() => {
+          window.location.href = window.location.href;
           closeModal("");
         }, 2000);
       }
@@ -27,6 +28,7 @@ export const RemoveApiKeyModal = ({ token, closeModal, id }) => {
       });
 
       setTimeout(() => {
+        window.location.href = window.location.href;
         closeModal("");
       }, 2000);
     }

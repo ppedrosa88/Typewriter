@@ -52,6 +52,37 @@ body {
   @apply text-[#70FFD9] bg-[#1F1F1F] font-bold border-b-4 border-[#70FFD9];
 }
 
+.hero_card1 {
+  background: linear-gradient(to top, RGBA(0, 0, 0, 0.2), RGBA(217, 132, 113, 1)), url('../../public/google1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero_card2 {
+  background: linear-gradient(to top, RGBA(217, 132, 113, 1), RGBA(0, 0, 0, 0.2)), url('../../public/marca-personal.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero_card3 {
+  background: linear-gradient(to top, RGBA(217, 132, 113, 1), RGBA(0, 0, 0, 0.2)), url('../../public/aumenta_prod.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero_card4 {
+  background: linear-gradient(to top, RGBA(0, 0, 0, 0.2), RGBA(217, 132, 113, 1)), url('../../public/grafica.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.text-shadow {
+  text-shadow: 0 0 4px white;
+}
 
 @layer utilities {
   .text-balance {

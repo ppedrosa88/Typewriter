@@ -25,6 +25,7 @@ export const EditStatusModal = ({ token, id, closeModal }) => {
             icon: "👏",
           });
           setTimeout(() => {
+            window.location.href = window.location.href;
             closeModal("");
           }, 2000);
         }
