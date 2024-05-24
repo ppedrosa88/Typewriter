@@ -34,6 +34,7 @@ export const NewAiPostModal = ({ token, closeModal }) => {
         duration: 1500,
         icon: "👎",
       });
+      setIsLoading(false);
     }
   };
 

@@ -10,6 +10,7 @@ import { CreateScheduleModal } from "@/app/ui/scheduled/CreateScheduleModal";
 import { UpdateScheduleModal } from "@/app/ui/scheduled/UpdateScheduleModal";
 import Scheduledbar from "@/app/ui/scheduled/scheduledbar";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
   const [contentScheduled, setContentScheduled] = useState([]);
   const [scheduleModal, setScheduleModal] = useState(false);
   const [editId, setEditId] = useState("");
+  const router = useRouter();
 
   const loadContent = async (type, token) => {
     try {
@@ -101,23 +103,43 @@ export default function Page() {
                 return (
                   <div
                     key={schedule.id}
-                    className="group relative w-full flex justify-evenly p-2 border-b border-gray-200"
+                    className="group relative w-full flex justify-evenly p-2 border-b border-gray-200 cursor-pointer"
                   >
-                    <div className="w-2/6 z-10">
+                    <div
+                      className="w-2/6 z-10"
+                      onClick={() =>
+                        router.push(`/dashboard/details/${schedule.blogId}`)
+                      }
+                    >
                       <p className="truncate pr-4">
                         {schedule.iaTitle ? schedule.iaTitle : schedule.title}
                       </p>
                     </div>
                     <div className="w-4/6 flex justify-between items-center z-10">
-                      <div className="w-1/4">
+                      <div
+                        className="w-1/4"
+                        onClick={() =>
+                          router.push(`/dashboard/details/${schedule.blogId}`)
+                        }
+                      >
                         <p className="capitalize">{schedule.category}</p>
                       </div>
-                      <div className="w-1/4">
+                      <div
+                        className="w-1/4"
+                        onClick={() =>
+                          router.push(`/dashboard/details/${schedule.blogId}`)
+                        }
+                      >
                         <p>
                           {format(schedule.scheduledTime, "dd/MM/yyyy HH:mm")}
                         </p>
                       </div>
-                      <div className="w-1/4">
+                      <div
+                        className="w-1/4"
+                        onClick={() =>
+                          router.push(`/dashboard/details/${schedule.blogId}`)
+                        }
+                      >
                         <p>{format(schedule.createdAt, "dd/MM/yyyy")}</p>
                       </div>
                       <div className="w-[12%] flex gap-6">

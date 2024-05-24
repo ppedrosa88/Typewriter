@@ -2,7 +2,6 @@
 import axios from "axios";
 
 export const getAllContent = async (token) => {
-  console.log(token);
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}`,
@@ -105,6 +104,7 @@ export const totallyRemoveContentById = async (token, id: string) => {
 };
 
 export const postByAi = async (token, content: any) => {
+  console.log(content);
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_BASE_CONTENT}/ia`,

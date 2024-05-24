@@ -14,7 +14,7 @@ export const Content = ({ data, isIa }) => {
           {url}
         </a>
       )}
-      <h1 className="text-3xl">{title}</h1>
+      <h1 className="text-3xl  font-bold">{title}</h1>
 
       <div className="py-4">
         {isIa === 0
@@ -31,7 +31,7 @@ export const Content = ({ data, isIa }) => {
                 return (
                   <>
                     <h2
-                      className="text-2xl"
+                      className="text-2xl font-bold"
                       dangerouslySetInnerHTML={{ __html: item.text }}
                     />
                     <br />
@@ -41,7 +41,7 @@ export const Content = ({ data, isIa }) => {
                 return (
                   <>
                     <h3
-                      className="text-xl"
+                      className="text-xl  font-bold"
                       dangerouslySetInnerHTML={{ __html: item.text }}
                     />
                     <br />
@@ -51,7 +51,7 @@ export const Content = ({ data, isIa }) => {
                 return (
                   <>
                     <h4
-                      className="text-lg"
+                      className="text-lg  font-bold"
                       dangerouslySetInnerHTML={{ __html: item.text }}
                     />
                     {item.text}

@@ -29,6 +29,10 @@ export default function Page() {
       if (response && response.data) {
         const { data } = response;
         data.rows = data.rows.filter((item) => item.status === "deleted");
+        data.rows = data.rows.sort(
+          (a, b) =>
+            new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        );
         setContent(data.rows);
       }
     } catch (error) {
@@ -104,7 +108,9 @@ export default function Page() {
                         className="w-2/6 z-10"
                         onClick={() => handleDetails(con.id)}
                       >
-                        <p>{con.title}</p>
+                        <p className="truncate pr-4">
+                          {con.iaTitle ? con.iaTitle : con.title}
+                        </p>
                       </div>
                       <div className="w-4/6 flex justify-between items-center z-10">
                         <div

@@ -12,7 +12,6 @@ export default function Page() {
   const [ref2, inView2] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [ref3, inView3] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [ref4, inView4] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [ref5, inView5] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <main className="relative">
@@ -25,15 +24,15 @@ export default function Page() {
       <section className="relative w-full h-screen bg-image-register bg-contain flex justify-center items-center">
         <div className="absolute w-[calc(100vw-3vw)] h-[calc(100vh-20vh)] p-6 rounded-2xl skew-y-3 bg-[#151515] shadow-2xl m-6"></div>
         <div className="absolute z-1 w-full h-[calc(100vh-64px)] p-6 flex flex-col md:flex-row">
-          <div className="w-full md:w-2/3 md:p-12 pt-12 md:pt-12">
+          <div className="w-full flex justify-center items-center lg:w-2/3 md:p-12 pt-12 md:pt-12">
             <div className="w-full">
-              <div className="w-full flex  items-center">
+              <div className="w-full flex items-center">
                 <h1 className="flex text-[48px] md:text-[60px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-full leading-[60px] pl-4 mb-12">
                   TypeWriter
                 </h1>
               </div>
               <div className="mb-0 md:mb-24 flex flex-col">
-                <p className="text-gray-50 md:text-[50px] text-4xl mb-4 md:leading-[52px] text-center font-bold">
+                <p className="text-gray-50 lg:text-[50px] text-4xl mb-4 :leading-[52px] text-center font-bold">
                   Libere el potencial de la{" "}
                   <span className="text-[#70FFD9]">IA</span> para cautivar a
                   cualquier audiencia
@@ -49,13 +48,13 @@ export default function Page() {
                     href={"/register"}
                     className="flex justify-center items-center text-lg w-2/5 md:w-1/3 h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
                   >
-                    Sign Up
+                    Regístrate
                   </Link>
                 </div>
               </div>
             </div>
           </div>
-          <div className="relative w-1/3 h-full overflow-hidden hidden md:block">
+          <div className="relative w-1/3 h-full overflow-hidden hidden lg:block">
             <div className="absolute w-full h-full bg-[radial-gradient(circle_closest-side,#D9847135,RGB(31,31,31,0))]"></div>
             <div
               ref={ref1}
@@ -72,15 +71,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* ¿Qué es TypeWriter? */}
-      {/* Libere el potencial de la IA para cautivar a cualquier audiencia */}
-      {/* Acelere su impacto de meses a minutos con nuestra plataforma líder en contenido componible */}
-
-      {/* Para quién? */}
-      {/* Título: ¿Cuál es tu papel en la creación de contenido? */}
-      {/* Dev: Accede a nuestra API y aprovecha todo el potencial del contenido generado por TypeWriter */}
-      {/* Content editors: Simplifica tu flujo de trabajo y enfócate en el estilo, mientras automatizamos el resto */}
-      {/* Marketing: Impulsa tu presencia en línea con contenido de alta calidad y alto impacto */}
 
       <section className="w-full pt-40 flex flex-col">
         <h2 className="text-center md:text-[60px] text-2xl font-bold text-gray-50 leading-loose">
@@ -241,24 +231,52 @@ export default function Page() {
         </div>
       </section>
 
+      <div className="pt-20"></div>
+      <div className="pt-20"></div>
+      <div className="pt-20"></div>
       {/* faq's */}
+      <section className="w-3/5 px-20">
+        <h2 className="text-[60px] leading-[60px] font-bold mb-10">
+          Utiliza nuestra API para{" "}
+          <span className="text-[#70FFD9]">gestionar</span> tu contenido.
+        </h2>
+        <p className="text-lg mb-20">
+          Con nuestra{" "}
+          <span className="text-[#D98471] font-bold text-xl">API</span> puedes
+          acceder a tu contenido y publicarlo en tu sitio de manera inmediata.
+          Disponemos de una documentación sencilla que te ayudará a gestionar tu
+          contenido donde quieras y cuando quieras.
+        </p>
+        <Link
+          className="w-fit flex justify-center items-center text-lg  h-10 px-6 py-3 mt-10 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+          href={"/api-docs"}
+        >
+          Accede a la Documentación
+        </Link>
+      </section>
+      <div className="pt-20"></div>
       <div className="pt-20"></div>
       <div className="pt-20"></div>
 
       <section className="p-2">
         <div className="">
           <h2 className="text-[60px] leading-[60px] font-bold text-center">
-            Eleva tu presencia y relevancia en tu mercado
+            Eleva tu <span className="text-[#70FFD9]">presencia</span> y{" "}
+            <span className="underline decoration-[#70FFD9]">relevancia</span>
           </h2>
           <h3 className="text-[60px] leading-[60px] font-bold text-center">
-            con un click
+            con un{" "}
+            <span className="text-[65px] leading-[70px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold">
+              click.
+            </span>
           </h3>
-          <p className="text-center text-lg">
-            Descubre cómo potenciar tu presencia en línea y destacar entre la
-            competencia con una estrategia inteligente y eficaz para todas tus
-            publicaciones.
-          </p>
-          <div className="w-full flex justify-evenly mt-20">
+
+          <div
+            ref={ref4}
+            className={`w-full flex md:flex-row flex-col justify-evenly mt-20 ${
+              inView4 ? "animate__animated animate__zoomInDown" : "opacity-0"
+            }`}
+          >
             <div className="w-1/5  min-h-[450px] rounded-xl hero_card1 invert">
               <div className="p-5 text-black text-shadow">
                 <h2 className="text-4xl font-semibold pb-5 w-[12ch]">
@@ -303,65 +321,123 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <div className="pt-40"></div>
 
       <div className="pt-20"></div>
+      <div className="px-20 py-20 flex flex-col justify-between items-center">
+        <h2 className="text-[60px] leading-[60px] font-bold">
+          Comienza a <span className="text-[#70FFD9]">crear</span>
+        </h2>
+        <Link
+          href={"/register"}
+          className="w-fit flex justify-center items-center text-lg  h-10 px-6 py-3 mt-10 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+        >
+          Regístrate
+        </Link>
+      </div>
 
-      {/* <section className="transition-all duration-200 ease-soft-in-out p-6 w-full">
-        <div className="primary container relative h-72 rounded-2xl overflow-hidden bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 shadow-2xl shadow-black">
-          <svg
-            className="w-4/6 absolute z-10 left-0 top-0"
-            preserveAspectRatio="none"
-            viewBox="0 0 100 100"
-            fill="currentColor"
-          >
-            <polygon
-              points="0,0 100,0 0,100"
-              className="fill-current text-[#1F1F1F]"
-            ></polygon>
-          </svg>
-          <div className="absolute w-full h-full flex justify-around items-center bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300">
-            <div className="w-3/5 z-10 h-full flex justify-center">
-              <h5 className="flex items-center h-full text-[60px] text-transparent bg-clip-text bg-gray-50 font-bold w-[20ch] leading-[60px]">
-                Let&apos;s make something great together.
-              </h5>
-            </div>
-            <div className="w-2/5 z-10 flex justify-center text-white text-lg">
-              <a
-                className="w-2/3 px-6 py-3 mt-6 mb-0 font-bold text-center primary uppercase align-middle transition-all bg-transparent border-2 border-black  rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in bg-gradient-to-tl from-black to-slate-950 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
-                href="/contact"
-              >
-                Let&apos;s connect
-              </a>
-            </div>
+      <div className="pt-40"></div>
+      <footer className="py-4 flex justify-between">
+        <div className="flex justify-center items-center gap-4 px-6">
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+              <path d="M10 9l5 3l-5 3z" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+              <path d="M8 11l0 5" />
+              <path d="M8 8l0 .01" />
+              <path d="M12 16l0 -5" />
+              <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+              <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M16.5 7.5l0 .01" />
+            </svg>
           </div>
         </div>
-      </section> */}
-
-      {/* ¿Qué puedo hacer? */}
-      {/* Título: Explora los beneficios de TypeWriter */}
-      {/* Reduce los tiempos de creación */}
-      {/* Descripción: Con TypeWriter, crea contenido en minutos, no en horas */}
-      {/* Basado en tus temas de interés */}
-      {/* Descripción: Nuestra IA puede gestionar contenido sobre cualquier tema */}
-      {/* Configura tu contenido para varias plataformas */}
-      {/* Descripción: Desde Facebook y Twitter hasta tu propio blog y más */}
-
-      {/* ¿Cómo funciona? */}
-      {/* Título: Descubre cómo funciona */}
-      {/* Introduce tu URL */}
-      {/* Escoge tu plataforma */}
-      {/* Crea tu contenido */}
-      {/* O bien */}
-      {/* Automatiza la creación a partir de una URL base */}
-
-      <footer className="py-12">
-        <div className="container">
-          <div className="flex flex-wrap ">
-            <div className="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
-              <p className="mb-0 text-slate-400">
-                Copyright © 2024 Soft by Pablo Pedrosa.
-              </p>
-            </div>
+        <div className="flex flex-wrap">
+          <div className="max-w-full px-3 mx-auto text-center flex-0 ">
+            <p className="mb-0 text-slate-400 p-6">
+              Copyright © 2024 Soft by Pablo Pedrosa.
+            </p>
           </div>
         </div>
       </footer>

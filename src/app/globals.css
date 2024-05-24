@@ -60,14 +60,14 @@ body {
 }
 
 .hero_card2 {
-  background: linear-gradient(to top, RGBA(217, 132, 113, 1), RGBA(0, 0, 0, 0.2)), url('../../public/marca-personal.jpg');
+  background: linear-gradient(to top, RGBA(0, 0, 0, 0.2), RGBA(217, 132, 113, 1)), url('../../public/marca-personal.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .hero_card3 {
-  background: linear-gradient(to top, RGBA(217, 132, 113, 1), RGBA(0, 0, 0, 0.2)), url('../../public/aumenta_prod.jpg');
+  background: linear-gradient(to top, RGBA(0, 0, 0, 0.2), RGBA(217, 132, 113, 1)), url('../../public/aumenta_prod.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -434,180 +434,107 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 
-
-2. Obtener un blog por ID
-Endpoint:
-
-ruby
-Copy code
-GET /:token/blog/:id
-Descripción:
-Este endpoint recupera los detalles de un blog específico por su ID.
-
-Parámetros de URL:
-
-token (string): Token de autenticación del usuario.
-id (integer): ID del blog.
-Respuesta Exitosa:
-
-json
-Copy code
-{
-  "ok": true,
-  "status": 200,
-  "data": {
-    "id": 1,
-    "title": "Blog Title 1",
-    "content": "Blog content 1",
-    "createdAt": "2023-01-01T00:00:00.000Z",
-    "updatedAt": "2023-01-01T00:00:00.000Z"
-  }
-}
-Errores:
-
-401 Unauthorized: Si el token no es válido o no se proporciona.
-404 Not Found: Si el blog con el ID especificado no existe.
-500 Internal Server Error: Si ocurre un error en el servidor.
-3. Mover un blog a la papelera
-Endpoint:
-
-ruby
-Copy code
-PATCH /:token/trash/:id
-Descripción:
-Este endpoint mueve un blog a la papelera, marcándolo como eliminado.
-
-Parámetros de URL:
-
-token (string): Token de autenticación del usuario.
-id (integer): ID del blog.
-Respuesta Exitosa:
-
-json
-Copy code
-{
-  "ok": true,
-  "status": 200,
-  "msg": "Blog moved to trash"
-}
-Errores:
-
-401 Unauthorized: Si el token no es válido o no se proporciona.
-404 Not Found: Si el blog con el ID especificado no existe.
-500 Internal Server Error: Si ocurre un error en el servidor.
-4. Eliminar un blog de forma permanente
-Endpoint:
-
-ruby
-Copy code
-DELETE /:token/trash/:id
-Descripción:
-Este endpoint elimina un blog de forma permanente de la base de datos.
-
-Parámetros de URL:
-
-token (string): Token de autenticación del usuario.
-id (integer): ID del blog.
-Respuesta Exitosa:
-
-json
-Copy code
-{
-  "ok": true,
-  "status": 200,
-  "msg": "Blog permanently deleted"
-}
-Errores:
-
-401 Unauthorized: Si el token no es válido o no se proporciona.
-404 Not Found: Si el blog con el ID especificado no existe.
-500 Internal Server Error: Si ocurre un error en el servidor.
-Ejemplo de Solicitud con cURL
-Obtener todos los blogs
-sh
-Copy code
-curl -X GET "http://your-api-url.com/users/your-token/blogs"
-Obtener un blog por ID
-sh
-Copy code
-curl -X GET "http://your-api-url.com/users/your-token/blog/1"
-Mover un blog a la papelera
-sh
-Copy code
-curl -X PATCH "http://your-api-url.com/users/your-token/trash/1"
-Eliminar un blog de forma permanente
-sh
-Copy code
-curl -X DELETE "http://your-api-url.com/users/your-token/trash/1"
-Notas
-Reemplaza http://your-api-url.com con la URL de tu API real.
-Asegúrate de tener el token válido antes de hacer las solicitudes.
-Los endpoints requieren que el token sea incluido en la URL para la autenticación.
-Esta documentación proporciona una visión completa de cómo interactuar con la API de Typewriter, incluyendo los endpoints disponibles, los parámetros requeridos y las posibles respuestas.
-
-*/}
-
-      <footer className="py-12">
-        <div className="container">
-          <div className="flex flex-wrap -mx-3">
-            <div className="flex-shrink-0 w-full max-w-full mx-auto mb-6 text-center lg:flex-0 lg:w-8/12">
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                Company{" "}
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                About Us{" "}
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                Team{" "}
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                Products{" "}
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                Blog{" "}
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"
-              >
-                {" "}
-                Pricing{" "}
-              </a>
-            </div>
+      <footer className="py-8">
+        <div className="flex justify-center items-center gap-4 mb-2">
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+              <path d="M10 9l5 3l-5 3z" />
+            </svg>
           </div>
-          <div className="flex flex-wrap -mx-3">
-            <div className="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
-              <p className="mb-0 text-slate-400">
-                Copyright © 2024 Soft by Pablo Pedrosa.
-              </p>
-            </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+              <path d="M8 11l0 5" />
+              <path d="M8 8l0 .01" />
+              <path d="M12 16l0 -5" />
+              <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+            </svg>
+          </div>
+          <div className="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+              <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M16.5 7.5l0 .01" />
+            </svg>
+          </div>
+        </div>
+        <div className="flex flex-wrap ">
+          <div className="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
+            <p className="mb-0 text-slate-400">
+              Copyright © 2024 Soft by Pablo Pedrosa.
+            </p>
           </div>
         </div>
       </footer>
