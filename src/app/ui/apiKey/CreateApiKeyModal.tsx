@@ -1,5 +1,4 @@
 "use client";
-import { postAutomation } from "@/app/lib/automation/fetch";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
@@ -40,23 +39,17 @@ export const CreateApiKeyModal = ({ token, closeModal }) => {
   };
 
   const handleCopyApiKey = () => {
-    // Obtener el texto del párrafo
     const apiKeyField = document.getElementById("apiKeyField");
-    const apiKeyText = apiKeyField.textContent;
 
-    // Crear un rango de selección
     const range = document.createRange();
     range.selectNodeContents(apiKeyField);
 
-    // Seleccionar el rango
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
 
-    // Copiar el texto al portapapeles
     document.execCommand("copy");
 
-    // Deseleccionar el texto
     selection.removeAllRanges();
 
     toast("Copiado al portapapeles", {

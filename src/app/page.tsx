@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Typewriter from "../../public/typewriter1.png";
-import Image from "next/image";
+// import Typewriter from "../../public/typewriter1.png";
+// import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 
 import "animate.css/animate.min.css";
+import LandingNav from "./ui/components/LandingNav";
 
 export default function Page() {
   const [ref1, inView1] = useInView({ triggerOnce: true });
@@ -15,76 +16,62 @@ export default function Page() {
 
   return (
     <main className="relative">
-      <Link
-        href={"/login"}
-        className="absolute z-10 top-0 right-4 flex justify-center items-center w-[200px] h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-black uppercase align-middle transition-all border-2 rounded-lg cursor-pointer shadow-soft-md  leading-pro text-lg ease-soft-in tracking-tight-soft bg-[#70FFD9] border-black hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
-      >
-        Sign In
-      </Link>
-      <section className="relative w-full h-screen bg-image-register bg-contain flex justify-center items-center">
+      <div className="sticky top-0 h-12 z-50">
+        <LandingNav />
+      </div>
+
+      <section className="relative w-full h-[calc(100vh-48px)] bg-image-register bg-contain flex justify-center items-center">
         <div className="absolute w-[calc(100vw-3vw)] h-[calc(100vh-20vh)] p-6 rounded-2xl skew-y-3 bg-[#151515] shadow-2xl m-6"></div>
-        <div className="absolute z-1 w-full h-[calc(100vh-64px)] p-6 flex flex-col md:flex-row">
-          <div className="w-full flex justify-center items-center lg:w-2/3 md:p-12 pt-12 md:pt-12">
-            <div className="w-full">
-              <div className="w-full flex items-center">
-                <h1 className="flex text-[48px] md:text-[60px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-full leading-[60px] pl-4 mb-12">
-                  TypeWriter
-                </h1>
+        <div className="absolute z-1 w-full h-[calc(100vh-64px)] p-6 flex flex-col justify-center items-center md:flex-row">
+          <div className="w-full flex justify-center items-center md:p-12 md:pt-12">
+            <div className="w-full flex flex-col justify-center items-center">
+              <h1 className="text-[48px] md:text-[60px] text-transparent text-center bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-full leading-[60px] pl-4 mb-12">
+                TypeWriter
+              </h1>
+
+              <p className="text-gray-50 lg:text-[50px] md:w-[35ch] text-4xl mb-4 :leading-[52px] font-bold text-center">
+                Libera el potencial de la{" "}
+                <span className="text-[#70FFD9]">IA</span> para cautivar a
+                cualquier audiencia
+              </p>
+              <p className="text-gray-50 text-lg mb-4 leading-[30px] text-center">
+                <span className="text-[#70FFD9] font-bold">
+                  Acelera tu impacto
+                </span>{" "}
+                de meses a minutos con nuestra plataforma
+              </p>
+              <div className="flex justify-center gap-6">
+                <Link
+                  href={"/register"}
+                  className="flex w-36 justify-center items-center text-lg h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+                >
+                  Regístrate
+                </Link>
+                <Link
+                  href={"/login"}
+                  className="flex  w-36 justify-center items-center text-lg h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+                >
+                  Entra
+                </Link>
               </div>
-              <div className="mb-0 md:mb-24 flex flex-col">
-                <p className="text-gray-50 lg:text-[50px] text-4xl mb-4 :leading-[52px] text-center font-bold">
-                  Libere el potencial de la{" "}
-                  <span className="text-[#70FFD9]">IA</span> para cautivar a
-                  cualquier audiencia
-                </p>
-                <p className="text-gray-50 text-lg mb-4 leading-[30px] text-center">
-                  <span className="text-[#70FFD9] font-bold">
-                    Acelere su impacto
-                  </span>{" "}
-                  de meses a minutos con nuestra plataforma
-                </p>
-                <div className="flex justify-evenly">
-                  <Link
-                    href={"/register"}
-                    className="flex justify-center items-center text-lg w-2/5 md:w-1/3 h-10 px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
-                  >
-                    Regístrate
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="relative w-1/3 h-full overflow-hidden hidden lg:block">
-            <div className="absolute w-full h-full bg-[radial-gradient(circle_closest-side,#D9847135,RGB(31,31,31,0))]"></div>
-            <div
-              ref={ref1}
-              className={`transition-all duration-1000 ${
-                inView1 ? "animate__animated animate__rotateIn" : "opacity-0"
-              }`}
-            >
-              <Image
-                src={Typewriter}
-                alt="Typewriter"
-                className="h-full object-cover grayscale invert	drop-shadow-2xl shadow-black"
-              />
             </div>
           </div>
         </div>
       </section>
 
       <section className="w-full pt-40 flex flex-col">
-        <h2 className="text-center md:text-[60px] text-2xl font-bold text-gray-50 leading-loose">
-          ¿Cuál es tu papel en la{" "}
+        <h2 className="text-center sm:text-[56px] text-2xl font-bold text-gray-50 leading-loose">
+          ¿Cuál es tu papel en la <br className="sm:hidden" />
           <mark className="bg-[#D98471] text-[#151515] px-2 font-extrabold rounded-md">
             creación de contenido?
           </mark>
         </h2>
-        <div className="w-full flex">
-          <p className="text-center text-xl text-gray-300 py-4 px-24">
+        <div className="w-full flex justify-center">
+          <p className="text-center text-lg sm:text-xl text-gray-300 py-4 sm:px-24 px-4">
             Descubre cómo contribuir al contenido de alto impacto con
             TypeWriter. Desde desarrolladores que aprovechan nuestra API hasta
             editores de contenido y profesionales de marketing,{" "}
-            <span className="text-2xl text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-full leading-[60px] mb-12">
+            <span className="text-2xl text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold w-full  mb-12">
               ¡todos tienen un papel clave en nuestra plataforma!
             </span>
           </p>
@@ -97,8 +84,8 @@ export default function Page() {
             inView2 ? "animate__animated animate__backInUp" : "opacity-0"
           }`}
         >
-          <div className="w-full flex justify-evenly items-stretch">
-            <div className="w-1/5 text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
+          <div className="w-full flex justify-evenly items-stretch md:flex-row flex-col lg:gap-12 gap-6 px-12">
+            <div className=" w-full text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -121,8 +108,14 @@ export default function Page() {
                 Accede a nuestra API y aprovecha todo el potencial del contenido
                 generado por TypeWriter
               </p>
+              <Link
+                className="w-full text-center mt-4 hover:text-[#D98471]"
+                href="/api-docs"
+              >
+                Accede a la API
+              </Link>
             </div>
-            <div className="w-1/5 text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
+            <div className=" w-full text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -148,7 +141,7 @@ export default function Page() {
                 automatizamos el resto
               </p>
             </div>
-            <div className="w-1/5 text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
+            <div className="  w-full text-gray-50 bg-[#313131] px-4 py-6 rounded-xl border border-black shadow-2xl shadow-black flex flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -178,16 +171,16 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="relative w-full flex justify-evenly items-stretch mt-56 overflow-hidden">
-        <div className="absolute top-0 hidden w-1/2 h-full -mr-40 overflow-hidden -skew-x-12 right-0 rounded-bl-xl md:block">
+      <section className="relative w-full flex lg:flex-row flex-col justify-evenly items-stretch lg:mt-56 mt-20 gap-12 lg:gap-0 overflow-hidden">
+        {/* <div className="absolute top-0 hidden w-1/2 h-full -mr-40 overflow-hidden -skew-x-12 right-0 rounded-bl-xl md:block">
           <div className="absolute inset-x-0 top-0 right-20 z-0 h-full -ml-16 bg-[length:80%_auto] bg-center skew-x-12 bg-image-register"></div>
-        </div>
-        <div className="w-2/5 py-12">
-          <div className="">
-            <h3 className="text-[80px] leading-[80px] font-bold">
-              la experiencia de escritura{" "}
-              <span className="bg-[#D98471] px-2 leading-[110px] rounded-xl text-[#151515] flex justify-center items-center">
-                automatizada.
+        </div> */}
+        <div className="w-full lg:w-2/5 lg:py-12 px-4 sm:px-0">
+          <div className="flex flex-col">
+            <h3 className="lg:text-[80px] text-2xl lg:leading-[80px] font-bold">
+              Automatiza tu trabajo y{" "}
+              <span className="bg-[#D98471] w-fit px-2 text-nowrap lg:leading-[110px] rounded-xl text-[#151515] flex justify-center items-center">
+                ahorra tiempo.
               </span>
             </h3>
             <p className="text-lg pt-4">
@@ -200,47 +193,51 @@ export default function Page() {
         </div>
         <div
           ref={ref3}
-          className={`w-1/3 relative z-10 flex flex-wrap justify-center items-center transition-all duration-1000 ${
+          className={`w-full lg:w-1/3 z-10 flex flex-col gap-2 lg:gap-6 justify-center items-center transition-all duration-1000 ${
             inView3 ? "animate__animated animate__backInRight" : "opacity-0"
           }`}
         >
-          <div className="w-48 m-2 h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
-            <p className="text-[#70FFD9] text-[50px] font-bold">80%</p>
-            <p className="text-xl font-bold  w-[15ch] text-center">
-              ahorro de tiempo
-            </p>
+          <div className="flex w-full gap-2 lg:gap-6 px-4 lg:px-0">
+            <div className="lg:w-48 w-1/2 lg:h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
+              <p className="text-[#70FFD9] text-[50px] font-bold">80%</p>
+              <p className="text-xl font-bold  w-[15ch] text-center">
+                ahorro de tiempo
+              </p>
+            </div>
+            <div className="lg:w-48 w-1/2  lg:h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
+              <p className="text-[#70FFD9] text-[50px] font-bold">15K</p>
+              <p className="text-xl font-bold w-[15ch] text-center">
+                textos generados al mes
+              </p>
+            </div>
           </div>
-          <div className="w-48 m-2 h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
-            <p className="text-[#70FFD9] text-[50px] font-bold">15K</p>
-            <p className="text-xl font-bold w-[15ch] text-center">
-              textos generados al mes
-            </p>
-          </div>
-          <div className="w-48 m-2 h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
-            <p className="text-[#70FFD9] text-[50px] font-bold">50%</p>
-            <p className="text-xl font-bold w-[15ch] text-center">
-              incremento de productividad
-            </p>
-          </div>
-          <div className="w-48 m-2 h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
-            <p className="text-[#70FFD9] text-[50px] font-bold">95%</p>
-            <p className="text-xl font-bold w-[15ch] text-center">
-              optimización SEO
-            </p>
+          <div className="flex w-full gap-2 lg:gap-6 px-4 lg:px-0">
+            <div className="lg:w-48 w-1/2 lg:h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
+              <p className="text-[#70FFD9] text-[50px] font-bold">50%</p>
+              <p className="text-xl font-bold w-[15ch] text-center">
+                incremento de productividad
+              </p>
+            </div>
+            <div className="lg:w-48 w-1/2  lg:h-48 bg-[#313131] shadow-xl rounded-xl flex flex-col justify-evenly items-center">
+              <p className="text-[#70FFD9] text-[50px] font-bold">95%</p>
+              <p className="text-xl font-bold w-[15ch] text-center">
+                optimización SEO
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="pt-20"></div>
+      <div className="pt-20 hidden lg:block"></div>
       <div className="pt-20"></div>
       <div className="pt-20"></div>
       {/* faq's */}
-      <section className="w-3/5 px-20">
-        <h2 className="text-[60px] leading-[60px] font-bold mb-10">
+      <section className="w-full lg:w-3/5 lg:px-20 px-4 flex flex-col">
+        <h2 className="lg:text-[60px] lg:leading-[60px] text-4xl text-center lg:text-start font-bold mb-10">
           Utiliza nuestra API para{" "}
           <span className="text-[#70FFD9]">gestionar</span> tu contenido.
         </h2>
-        <p className="text-lg mb-20">
+        <p className="lg:text-lg mb-20">
           Con nuestra{" "}
           <span className="text-[#D98471] font-bold text-xl">API</span> puedes
           acceder a tu contenido y publicarlo en tu sitio de manera inmediata.
@@ -248,57 +245,57 @@ export default function Page() {
           contenido donde quieras y cuando quieras.
         </p>
         <Link
-          className="w-fit flex justify-center items-center text-lg  h-10 px-6 py-3 mt-10 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
+          className="w-fit self-center lg:self-start flex justify-center items-center text-lg h-10 px-6 py-3 lg:mt-10 mt-2 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150   ease-soft-in tracking-tight-soft bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 hover:scale-105 hover:shadow-soft-xs active:opacity-85 disabled:bg-gray-500"
           href={"/api-docs"}
         >
           Accede a la Documentación
         </Link>
       </section>
       <div className="pt-20"></div>
-      <div className="pt-20"></div>
+      <div className="pt-20 hidden lg:block"></div>
       <div className="pt-20"></div>
 
       <section className="p-2">
         <div className="">
-          <h2 className="text-[60px] leading-[60px] font-bold text-center">
+          <h2 className="lg:text-[60px] lg:leading-[60px] text-4xl font-bold text-center">
             Eleva tu <span className="text-[#70FFD9]">presencia</span> y{" "}
             <span className="underline decoration-[#70FFD9]">relevancia</span>
           </h2>
-          <h3 className="text-[60px] leading-[60px] font-bold text-center">
+          <h3 className="lg:text-[60px] lg:leading-[60px] text-4xl font-bold text-center">
             con un{" "}
-            <span className="text-[65px] leading-[70px] text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold">
+            <span className="lg:text-[65px] lg:leading-[70px] text-4xl text-transparent bg-clip-text bg-gradient-to-br to-[#D98471] via-[#D98471] from-slate-300 font-bold">
               click.
             </span>
           </h3>
 
           <div
             ref={ref4}
-            className={`w-full flex md:flex-row flex-col justify-evenly mt-20 ${
+            className={`w-full flex md:flex-row flex-col flex-wrap gap-2 lg:gap-0 justify-evenly items-stretch mt-20 ${
               inView4 ? "animate__animated animate__zoomInDown" : "opacity-0"
             }`}
           >
-            <div className="w-1/5  min-h-[450px] rounded-xl hero_card1 invert">
+            <div className="lg:w-1/5 sm:w-3/5 w-full min-h-[450px] rounded-xl hero_card1 invert">
               <div className="p-5 text-black text-shadow">
                 <h2 className="text-4xl font-semibold pb-5 w-[12ch]">
                   Optimiza insights
                 </h2>
-                <p className=" font-semibold text-lg">
+                <p className="font-semibold text-lg">
                   Benefíciate de la capacidad de optimizar la presencia de tu
                   web.
                 </p>
               </div>
             </div>
-            <div className="w-1/5  min-h-[450px] rounded-xl hero_card2 invert">
-              <div className="p-5 text-black text-shadow">
+            <div className="lg:w-1/5 sm:w-3/5 w-full min-h-[450px] rounded-xl hero_card2 invert">
+              <div className=" p-5 text-black text-shadow">
                 <h2 className="text-4xl font-semibold pb-5 w-[12ch]">
                   Ajusta contenido
                 </h2>
-                <p className=" font-semibold text-lg">
+                <p className="font-semibold text-lg">
                   Consigue contenido que se adapte a tu firma.
                 </p>
               </div>
             </div>
-            <div className="w-1/5 min-h-[450px] rounded-xl hero_card4 invert">
+            <div className="lg:w-1/5 sm:w-3/5 w-full min-h-[450px] rounded-xl hero_card4 invert">
               <div className="p-5 text-black text-shadow">
                 <h2 className="text-4xl font-semibold  pb-5 w-[12ch]">
                   SEO potenciado
@@ -307,8 +304,14 @@ export default function Page() {
                   Con TypeWriter, aumenta la visibilidad de tu marca.
                 </p>
               </div>
+              <Link
+                className="invert-0 filter-none text-[#D98471]"
+                href={"/register"}
+              >
+                Comienza ya
+              </Link>
             </div>
-            <div className=" w-1/5  min-h-[450px] rounded-xl hero_card3 invert">
+            <div className="lg:w-1/5 sm:w-3/5 w-full min-h-[450px] rounded-xl hero_card3 invert">
               <div className="p-5 text-black text-shadow">
                 <h2 className="text-4xl font-semibold  pb-5 w-[12ch]">
                   Aumenta productividad
@@ -321,11 +324,17 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <div className="pt-40"></div>
 
+      <div className="pt-40"></div>
       <div className="pt-20"></div>
-      <div className="px-20 py-20 flex flex-col justify-between items-center">
-        <h2 className="text-[60px] leading-[60px] font-bold">
+
+      <div
+        ref={ref1}
+        className={`md:px-20 px:4 py-20 flex flex-col justify-between items-center ${
+          inView1 ? "animate__animated animate__heartBeat" : "opacity-0"
+        }`}
+      >
+        <h2 className="md:text-[60px] md:leading-[60px] text-4xl font-bold">
           Comienza a <span className="text-[#70FFD9]">crear</span>
         </h2>
         <Link
@@ -337,7 +346,7 @@ export default function Page() {
       </div>
 
       <div className="pt-40"></div>
-      <footer className="py-4 flex justify-between">
+      <footer className="py-4 flex justify-between flex-col sm:flex-row">
         <div className="flex justify-center items-center gap-4 px-6">
           <div className="cursor-pointer">
             <svg

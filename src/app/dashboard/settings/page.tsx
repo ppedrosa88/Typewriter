@@ -53,14 +53,6 @@ export default function Page() {
     }
   };
 
-  // const handleDeleteApiKey = async (id) => {
-  //     try {
-  //         const response = await deleteApiKey(token, id);
-  //         if (response.ok) {
-  //             loadApiKeyData(token);
-  //         }
-  //     }
-
   return (
     <div className=" flex flex-col h-full ">
       <div className="w-full h-full font-mono flex flex-col bg-[#151515] rounded-md overflow-hidden ">

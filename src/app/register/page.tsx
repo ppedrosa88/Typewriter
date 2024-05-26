@@ -65,19 +65,16 @@ export default function Page() {
   return (
     <main className="mt-0 transition-all duration-200 ease-soft-in-out ps">
       <section className="min-h-screen mb-32">
-        <div className="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl bg-image-register">
+        <div className="relative flex items-start pt-12 pb-56  overflow-hidden bg-center bg-cover rounded-xl bg-image-register">
           <div className="container z-10">
             <div className="flex flex-wrap justify-center -mx-3">
-              <div className="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
+              <div className="w-full max-w-full px-3 text-center lg:flex-0 shrink-0 lg:w-5/12">
                 <h1 className="mt-12 mb-2 text-slate-50 text-3xl">
                   Welcome to{" "}
                   <span className="relative z-10 font-semibold text-transparent bg-gradient-to-bl from-[#D98471] via-[#D98471] to-slate-300 bg-clip-text text-[40px] before:content-[''] before:absolute before:-z-10 before:bg-white before:rounded-2xl px-4 before:top-0 before:right-0 before:bottom-0 before:left-0">
                     <Link href={"/"}>TYPEWRITER!</Link>
                   </span>
                 </h1>
-                {/* <p className="text-xl text-slate-50">
-                  Start creating and modifying content
-                </p> */}
               </div>
             </div>
           </div>
@@ -87,7 +84,7 @@ export default function Page() {
             <div className="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
               <div className="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="px-6 pt-6 text-center bg-white border-b-0 rounded-t-2xl">
-                  <h5 className="text-slate-400">Register with</h5>
+                  <h5 className="text-slate-400">Register</h5>
                 </div>
                 <div className="flex-auto p-6">
                   <form role="form text-left" onSubmit={handleSubmit}>
